@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import './App.css'
 import { useDispatch } from 'react-redux'
 import { useEffect } from 'react';
 import authService from "./appwrite/auth"
 import { login, logout } from "./store/authSlice"
+import { Footer, Header } from './components';
 
 function App() {
 
@@ -23,7 +23,10 @@ function App() {
   }, [dispatch])
 
   return loading ? (
-    <div className=" w-full my-10 text-3xl text-center bg-stone-900">MEGA BLOG APP</div>
+    <>
+      <Header />
+      <Footer />
+    </>
   ) : null
 }
 
