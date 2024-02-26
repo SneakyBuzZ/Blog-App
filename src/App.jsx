@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { useEffect } from 'react';
 import authService from "./appwrite/auth"
 import { login, logout } from "./store/authSlice"
-import { Footer, Header } from './components';
+import { Footer, Header, Home } from './components';
 
 function App() {
 
@@ -25,6 +25,7 @@ function App() {
   return loading ? (
     <>
       <Header />
+      <Home />
       <Footer />
     </>
   ) : null

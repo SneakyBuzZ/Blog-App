@@ -3,7 +3,7 @@ function Header() {
     return (
         <>
             <header>
-                <div className="outerHeader w-full h-14 mb-32 px-3 sm:px-4 md:h-20 lg:px-10 ">
+                <div className="outerHeader w-full h-14 px-3 sm:px-4 md:h-20 lg:px-10 ">
                     <div className="header mx-auto h-full flex ">
                         <div className="logo flex justify-center items-center h-full">
                             <img className=" hidden sm:block sm:h-7 md:h-10 lg:h-12" src="/public/blog_app_logo.png" alt="" />
