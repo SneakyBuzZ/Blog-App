@@ -1,4 +1,5 @@
 import "./Footer.css"
+import { Link } from "react-router-dom"
 function Footer() {
     return (
         <>
@@ -9,25 +10,25 @@ function Footer() {
                         <div className="navigate">
                             <h1 className=" mb-1 sm:text-md md:text-lg text-sm">Navigate</h1>
                             <ul className="text-xs sm:text-md md:text-md text-center mb-3">
-                                <li>Home</li>
-                                <li>Account</li>
-                                <li>Contact</li>
+                                <li><Link to="/">Home</Link></li>
+                                <li><Link to="/">Account</Link></li>
+                                <li><Link to="/">Contact</Link></li>
                             </ul>
                         </div>
                         <div className="company">
                             <h1 className=" mb-1 sm:text-md md:text-lg text-sm">Company</h1>
                             <ul className="text-xs sm:text-md md:text-md text-center mb-3">
-                                <li>About Us</li>
-                                <li>Security</li>
-                                <li>Jobs</li>
+                                <li><Link to="/">About Us</Link></li>
+                                <li><Link to="/">Security</Link></li>
+                                <li><Link to="/">Jobs</Link></li>
                             </ul>
                         </div>
                         <div className="resource">
                             <h1 className=" mb-1 sm:text-md md:text-lg text-sm">Resource</h1>
                             <ul className="text-xs sm:text-md md:text-md text-center mb-3">
-                                <li>Blog Us</li>
-                                <li>Help Center</li>
-                                <li>API Docs</li>
+                                <li><Link to="/">Blog</Link></li>
+                                <li><Link to="/">Help Center</Link></li>
+                                <li><Link to="/">API Docs</Link></li>
                             </ul>
                         </div>
                     </div>
@@ -37,16 +38,24 @@ function Footer() {
                     </div>
                     <div className="footerSocial h-1/5 flex w-full justify-center">
                         <div className="footerImage image1 mb-4 px-2">
-                            <img className="h-5 grayscale opacity-70 sm:h-7" src="/public/insta_logo.png" alt="" />
+                            <Link to="/">
+                                <img className="h-5 grayscale opacity-70 sm:h-7" src="/public/insta_logo.png" alt="" />
+                            </Link>
                         </div>
                         <div className="footerImage image2 mb-4 px-2">
-                            <img className="h-5 grayscale opacity-70 sm:h-7" src="/public/fb_logo.png" alt="" />
+                            <Link to="/">
+                                <img className="h-5 grayscale opacity-70 sm:h-7" src="/public/fb_logo.png" alt="" />
+                            </Link>
                         </div>
                         <div className="footerImage image3 mb-4 px-2">
-                            <img className="h-5 grayscale opacity-70 sm:h-7" src="/public/twitter_logo.png" alt="" />
+                            <Link to="/">
+                                <img className="h-5 grayscale opacity-70 sm:h-7" src="/public/twitter_logo.png" alt="" />
+                            </Link>
                         </div>
                         <div className="footerImage image4 mb-4 px-2">
-                            <img className="h-5 grayscale opacity-70 sm:h-7" src="/public/discord_logo.png" alt="" />
+                            <Link to="/">
+                                <img className="h-5 grayscale opacity-70 sm:h-7" src="/public/discord_logo.png" alt="" />
+                            </Link>
                         </div>
                     </div>
                 </div>
