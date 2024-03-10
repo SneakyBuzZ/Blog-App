@@ -2,28 +2,36 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux"
 import { login as storeLogin } from "../../store/authSlice"
-import { Navigate, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import authService from "../../appwrite/auth"
 import { Input, Button } from "../index"
 
+
+
 function Signup() {
     const dispatch = useDispatch()
-    const { register, handleSubmit } = useForm
+    const navigate = useNavigate()
+    const { register, handleSubmit } = useForm();
     const [error, setError] = useState("")
 
     const signup = async (data) => {
+        console.log("Clicked")
         setError("")
         try {
             const session = await authService.createAccount(data)
             if (session) {
                 const currentUser = authService.getCurrentUser()
-                if (currentUser) dispatch(storeLogin(currentUser))
-                Navigate("/")
+                if (currentUser) {
+                    dispatch(storeLogin(currentUser))
+                }
+                navigate("/")
             }
         } catch (error) {
             setError(error)
         }
     }
+
+
     return (
         <>
             <div className="w-full px-3 py-5 flex justify-center items-center border border-black rounded-lg">
@@ -31,7 +39,7 @@ function Signup() {
                     <h1 className="text-lg text-center">Sign Up</h1>
                     <div className="flex items-center">
                         <span className="text-md text-center">Already have an account?</span>
-                        <Link to="/signup">
+                        <Link to="/login">
                             <li className="text-md text-center">Login!</li>
                         </Link>
                     </div>

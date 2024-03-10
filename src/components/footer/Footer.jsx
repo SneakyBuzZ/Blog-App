@@ -11,8 +11,8 @@ function Footer() {
                             <h1 className=" mb-1 sm:text-md md:text-lg text-sm">Navigate</h1>
                             <ul className="text-xs sm:text-md md:text-md text-center mb-3">
                                 <li><Link to="/">Home</Link></li>
-                                <li><Link to="/">Account</Link></li>
-                                <li><Link to="/">Contact</Link></li>
+                                <li><Link to="/account">Account</Link></li>
+                                <li><Link to="/contact">Contact</Link></li>
                             </ul>
                         </div>
                         <div className="company">

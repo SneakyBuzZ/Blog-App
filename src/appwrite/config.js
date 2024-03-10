@@ -1,4 +1,4 @@
-import { Account, Client, Databases, ID, Query, Storage } from "appwrite";
+import { Client, Databases, ID, Query, Storage } from "appwrite";
 import conf from "../conf/conf";
 
 export class DatabaseService {
@@ -11,25 +11,23 @@ export class DatabaseService {
             .setEndpoint(conf.appwriteUrl)
             .setProject(conf.appwriteProjectId);
 
-        this.account = new Account(this.client);
-
         this.databases = new Databases(this.client);
 
         this.bucket = new Storage(this.client);
     }
 
     //POST SERVICES
-    async createPost({ tittle, slug, content, featuredImage, status, userId }) {
+    async createPost({ title, slug, content, featuredImage, status, userId }) {
         try {
             return await this.databases.createDocument(    //
                 conf.appwriteDatabaseId,                   // -> this are required to create a post  
                 conf.appwriteCollectionId,                 //
                 slug,
                 {
-                    tittle,                                //
+                    title,                                //
                     content,                               // 
-                    featuredImage,                         // -> these is are what we are creating 
-                    status,                                //
+                    status,
+                    featuredImage,
                     userId                                 //
                 }
             )
@@ -38,17 +36,18 @@ export class DatabaseService {
         }
     }
 
-    async updatePost(slug, { tittle, content, featuredImage, status }) {
+    async updatePost(slug, { title, content, featuredImage, status, userId }) {
         try {
             return await this.databases.updateDocument(   //
                 conf.appwriteDatabaseId,                  // -> these are required to update the post 
                 conf.appwriteCollectionId,                //
                 slug,
                 {
-                    tittle,             //
-                    content,            //-> these are what we are upaating in the post 
+                    title,             //
+                    content,            //-> these are what we are updating in the post 
                     featuredImage,      //  
-                    status              //
+                    status,
+                    userId              //
                 }
             )
         } catch (error) {
@@ -126,7 +125,7 @@ export class DatabaseService {
         return this.bucket.getFilePreview(
             conf.appwriteBucketId,
             fileId
-        )
+        ).href
     }
 }
 

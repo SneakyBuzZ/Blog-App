@@ -2,7 +2,7 @@ import "./Home.css"
 function Home() {
     return (
         <>
-            <home>
+            <div className="home">
                 <div className="home mb-96 w-full hidden sm:block">
                     <div className="tittle w-full text-center">
                         <h1 className="text-5xl sm:text-7xl py-5 sm:pt-10">Express Wave</h1>
@@ -13,7 +13,7 @@ function Home() {
                         </p>
                     </div>
                 </div>
-            </home>
+            </div>
         </>
     )
 }

@@ -6,5 +6,10 @@ import Button from "./button/Button"
 import Input from "./input/Input"
 import Select from "./select/Select"
 import PostCard from "./postcard/PostCard"
+import RTEditor from "./rte/RTEditor"
+import Signup from "./signup/Signup"
+import Login from "./login/Login"
+import PostForm from "./postform/PostForm"
+import ProtectedLayout from "./protectedlayout/ProtectedLayout"
 
-export { Header, Footer, Home, Container, Button, Input, Select, PostCard }
+export { Header, Footer, Home, Container, Button, Input, Select, PostCard, RTEditor, Signup, Login, PostForm, ProtectedLayout }
