@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux"
 import { login as storeLogin } from "../../store/authSlice"
@@ -26,6 +26,20 @@ function Login() {
             setError(error)
         }
     }
+
+    useEffect(() => {
+        authService.getCurrentUser()
+            .then((userData) => {
+                console.log("THIS IS USERDATA IN APP.JSX", userData)
+                if (userData) {
+                    dispatch(login(userData))
+                } else {
+                    dispatch(logout())
+                }
+            })
+            .finally(() => setLoading[false])
+    }, [dispatch])
+
     return (
         <>
             <div className="w-full px-3 py-5 flex justify-center items-center border border-black rounded-lg">

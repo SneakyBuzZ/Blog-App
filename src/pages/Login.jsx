@@ -1,8 +1,7 @@
-import { Login as LoginComponent, Header } from "../components"
+import { Login as LoginComponent } from "../components"
 function Login() {
     return (
         <div className="">
-            <Header />
             <LoginComponent />
         </div>
     )

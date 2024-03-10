@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import databaseService from "../appwrite/config"
-import { Container, Home, Header, Footer } from "../components"
+import { Container, Home } from "../components"
 
 
 function HomePage() {
@@ -20,9 +20,7 @@ function HomePage() {
         return (
             <div className="w-full">
                 <Container>
-                    <Header />
                     <Home />
-                    <Footer />
                 </Container>
             </div>
         )
@@ -32,9 +30,7 @@ function HomePage() {
         <div className="w-full">
             <Container>
                 <h1>Welcome!</h1>
-                <Header />
                 <Home />
-                <Footer />
             </Container>
         </div>
     )

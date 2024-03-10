@@ -3,16 +3,16 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import databaseService from "../appwrite/config";
 import { Button, Container } from "../components";
 import parse from "html-react-parser";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 
 export default function Post() {
     const [post, setPost] = useState(null);
     const { slug } = useParams();
     const navigate = useNavigate();
 
-    const userData = useSelector((state) => state.user.userData);
+    // const userData = useSelector((state) => state.user.userData);
 
-    const isAuthor = post && userData ? post.userId === userData.$id : false;
+    const isAuthor = post ? true : false
 
     useEffect(() => {
         if (slug) {
@@ -26,7 +26,7 @@ export default function Post() {
     const deletePost = () => {
         databaseService.deletePost(post.$id).then((status) => {
             if (status) {
-                databaseService.deleteFile(post.featuredImage);
+                databaseService.deleteFile(post.featureImage);
                 navigate("/");
             }
         });
@@ -37,7 +37,7 @@ export default function Post() {
             <Container>
                 <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
                     <img
-                        src={databaseService.getFilePreview(post.featuredImage)}
+                        src={databaseService.getFilePreview(post.featureImage)}
                         alt={post.title}
                         className="rounded-xl"
                     />

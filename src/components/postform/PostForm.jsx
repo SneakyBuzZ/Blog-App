@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form"
 import { RTEditor, Button, Input, Select } from "../index"
 import databaseService from "../../appwrite/config"
 import { useNavigate } from "react-router-dom"
-import { useSelector } from "react-redux"
+// import { useSelector } from "react-redux"
 
 function PostForm({ post }) {
 
@@ -17,18 +17,18 @@ function PostForm({ post }) {
     })
 
     const navigate = useNavigate();
-    const userData = useSelector(state => state.user.userData);
+    const userId = "65ed5990922e58642ac1";
 
 
     const submit = async (data) => {
         if (post) {
-            const file = data.image[0] ? await databaseService.uploadFile(data.image[0]) : null;
+            const file = data.featureImage[0] ? await databaseService.uploadFile(data.featureImage[0]) : null;
 
             if (file) {
                 databaseService.deleteFile(post.featureImage)
             }
 
-            const updatePost = await databaseService.updatePost(post.$id, { ...data, featuredImage: file ? file.$id : undefined });
+            const updatePost = await databaseService.updatePost(post.$id, { ...data, featureImage: file ? file.$id : undefined });
             if (updatePost) {
                 navigate(`/post/${updatePost.$id}`);
             }
@@ -40,13 +40,13 @@ function PostForm({ post }) {
                 const fileId = file.$id;
                 console.log("this is FILEID : ", fileId);
                 data.featureImage = fileId;
-                console.log("this is DATA : ", data);
-                console.log("THIS IS USERDATA : ", userData)
-                const createPost = await databaseService.createPost({
-                    ...data, userId: userData.$id
-                });
+                console.log("this is DATA :- ", { ...data, userId: userId });
+                console.log("THIS IS USERDATA : ", userId)
+                const createPost = await databaseService.createPost({ ...data, userId: userId });
+                console.log(data)
 
                 if (createPost) {
+                    console.log("POSTED!")
                     navigate(`/post/${createPost.$id}`)
                 }
             }
@@ -73,6 +73,7 @@ function PostForm({ post }) {
 
         return () => subscription.unsubscribe();
     }, [watch, slugTranform, setValue]);
+
 
 
     return (

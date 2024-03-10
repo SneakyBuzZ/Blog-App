@@ -1,7 +1,11 @@
-import { Container, PostForm, PostCard, Header } from "../components"
+import { Container, PostForm, PostCard } from "../components"
 import databaseService from "../appwrite/config"
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
+
+import { useDispatch } from 'react-redux'
+import authService from "../appwrite/auth"
+import { login, logout } from "../store/authSlice"
 
 function Account() {
     const [posts, setPosts] = useState([])
@@ -33,19 +37,40 @@ function Account() {
         }
     }, [slug, navigate])
 
-    return (
+
+
+
+    const [loading, setLoading] = useState(true)
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        authService.getCurrentUser()
+            .then((userData) => {
+                console.log("THIS IS USERDATA IN APP.JSX", userData)
+                if (userData) {
+                    dispatch(login(userData))
+                } else {
+                    dispatch(logout())
+                }
+            })
+            .finally(() => setLoading[false])
+    }, [dispatch])
+
+
+
+
+    return loading ? (
         <>
-            <Header />
             <div className="py-8">
                 <Container>
-                    <div className="flex flex-col justify-evenly items-center">
+                    <div className="flex flex-col justify-evenly items-center w-full">
                         <h1>Add Post</h1>
                         <PostForm {...empty} />
                         <h1>All Posts</h1>
-                        <div className="flex flex-wrap">
+                        <div className="flex flex-wrap w-full justify-center items-center">
                             {
                                 posts.map((eachPost) => (
-                                    <div key={eachPost.$id} className="py-3 w-1/6">
+                                    <div key={eachPost.$id} className="py-3">
                                         <PostCard {...eachPost} />
                                     </div>
                                 ))
@@ -63,7 +88,7 @@ function Account() {
                 </Container>
             </div>
         </>
-    )
+    ) : <h1>Loading.....</h1>
 }
 
 export default Account

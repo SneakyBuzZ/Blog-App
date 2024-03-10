@@ -17,7 +17,7 @@ export class DatabaseService {
     }
 
     //POST SERVICES
-    async createPost({ title, slug, content, featuredImage, status, userId }) {
+    async createPost({ title, slug, content, featureImage, status, userId }) {
         try {
             return await this.databases.createDocument(    //
                 conf.appwriteDatabaseId,                   // -> this are required to create a post  
@@ -27,8 +27,9 @@ export class DatabaseService {
                     title,                                //
                     content,                               // 
                     status,
-                    featuredImage,
-                    userId                                 //
+                    featureImage,
+                    userId,
+                    slug                                //
                 }
             )
         } catch (error) {
@@ -36,7 +37,7 @@ export class DatabaseService {
         }
     }
 
-    async updatePost(slug, { title, content, featuredImage, status, userId }) {
+    async updatePost(slug, { title, content, featureImage, status, userId }) {
         try {
             return await this.databases.updateDocument(   //
                 conf.appwriteDatabaseId,                  // -> these are required to update the post 
@@ -45,7 +46,7 @@ export class DatabaseService {
                 {
                     title,             //
                     content,            //-> these are what we are updating in the post 
-                    featuredImage,      //  
+                    featureImage,      //  
                     status,
                     userId              //
                 }
