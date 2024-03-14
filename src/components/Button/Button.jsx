@@ -10,7 +10,7 @@ function Button({
     return (
         <>
             <button
-                className={` btn font-semibold w-12 h-6 md:w-20 md:h-10 rounded-sm sm:rounded-md mx-1 sm:mx-2 text-xs  ${backgroundColor} ${color} ${className}`}
+                className={`font-semibold w-12 h-6 md:w-20 md:h-10 rounded-sm sm:rounded-md mx-1 sm:mx-2 text-xs  ${backgroundColor} ${color} ${className}`}
                 type={type}
                 {...props}>
                 {children}

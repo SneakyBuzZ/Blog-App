@@ -27,7 +27,7 @@ function Footer() {
                             <h1 className=" mb-1 sm:text-md md:text-lg text-sm">Resource</h1>
                             <ul className="text-xs sm:text-md md:text-md text-center mb-3">
                                 <li><Link to="/">Blog</Link></li>
-                                <li><Link to="/">Help Center</Link></li>
+                                <li><Link to="/">Help</Link></li>
                                 <li><Link to="/">API Docs</Link></li>
                             </ul>
                         </div>
