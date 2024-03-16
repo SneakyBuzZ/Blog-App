@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import databaseService from "../appwrite/config"
 import { Container, Home } from "../components"
+import BlogScroll from "../components/blogscroll/BlogScroll"
 
 
 function HomePage() {
@@ -21,6 +22,7 @@ function HomePage() {
             <div className="w-full">
                 <Container>
                     <Home />
+                    <BlogScroll />
                 </Container>
             </div>
         )

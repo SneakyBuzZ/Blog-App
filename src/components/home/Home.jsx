@@ -3,7 +3,7 @@ function Home() {
     return (
         <>
             <div className="home">
-                <div className="home mb-96 w-full hidden sm:block">
+                <div className="home w-full block">
                     <div className="tittle w-full text-center">
                         <h1 className="text-5xl sm:text-7xl py-5 sm:pt-10">Express Wave</h1>
                     </div>

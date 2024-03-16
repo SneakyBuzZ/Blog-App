@@ -3,5 +3,40 @@
 @tailwind utilities;
 
 body {
-    background-color: rgb(192, 192, 192);
+    background-color: rgba(171, 171, 171, 0.263);
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    /* width of the scrollbar */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #ff000000;
+    /* color of the track */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #9c9c9c;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+    /* color of the scrollbar handle on hover */
+}
+
+.contentBlog {
+    font-family: "Anta", sans-serif;
+}
+
+.bottomBlog {
+    font-family: "Anta", sans-serif;
+}
+
+.blog-title {
+    font-family: "Anta", sans-serif;
 }
