@@ -51,14 +51,14 @@ function Header() {
                         <div className="header mx-auto h-full flex ">
                             <div className="logo flex justify-center items-center h-full">
                                 <Link to="/">
-                                    <img className=" hidden sm:block sm:h-7 md:h-10 lg:h-12" src="/public/blog_app_logo.png" alt="" />
+                                    <img className=" hidden sm:block sm:h-7 md:h-10 lg:h-12" src="/blog_app_logo.png" alt="" />
                                 </Link>
                             </div>
                             <div className="navigation">
                                 <ul className="flex h-full items-center">
                                     {navItems.map((eachItem) => (
                                         eachItem.active ? (
-                                            <li key={eachItem.name} className=" text-xs mx-1 sm:text-sm md:text-md sm:mx-2 md:mx-5"><Link to={`${eachItem.slug}`}>{eachItem.name}</Link></li>
+                                            <li key={eachItem.name} className={` text-xs mx-1 sm:text-sm md:text-md sm:mx-2 md:mx-5`}><Link to={`${eachItem.slug}`}>{eachItem.name}</Link></li>
                                         ) : null
                                     ))}
                                 </ul>

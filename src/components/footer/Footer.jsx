@@ -39,22 +39,22 @@ function Footer() {
                     <div className="footerSocial h-1/5 flex w-full justify-center">
                         <div className="footerImage image1 mb-4 px-2">
                             <Link to="/">
-                                <img className="h-5 grayscale opacity-70 sm:h-7" src="/public/insta_logo.png" alt="" />
+                                <img className="h-5 grayscale opacity-70 sm:h-7" src="/insta_logo.png" alt="" />
                             </Link>
                         </div>
                         <div className="footerImage image2 mb-4 px-2">
                             <Link to="/">
-                                <img className="h-5 grayscale opacity-70 sm:h-7" src="/public/fb_logo.png" alt="" />
+                                <img className="h-5 grayscale opacity-70 sm:h-7" src="/fb_logo.png" alt="" />
                             </Link>
                         </div>
                         <div className="footerImage image3 mb-4 px-2">
                             <Link to="/">
-                                <img className="h-5 grayscale opacity-70 sm:h-7" src="/public/twitter_logo.png" alt="" />
+                                <img className="h-5 grayscale opacity-70 sm:h-7" src="/twitter_logo.png" alt="" />
                             </Link>
                         </div>
                         <div className="footerImage image4 mb-4 px-2">
                             <Link to="/">
-                                <img className="h-5 grayscale opacity-70 sm:h-7" src="/public/discord_logo.png" alt="" />
+                                <img className="h-5 grayscale opacity-70 sm:h-7" src="/discord_logo.png" alt="" />
                             </Link>
                         </div>
                     </div>
