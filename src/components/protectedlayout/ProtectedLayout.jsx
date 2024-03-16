@@ -9,7 +9,7 @@ function ProtectedLayout({ children, authentication = true }) {
 
     useEffect(() => {
         if (authentication && authStatus !== authentication) {
-            navigate("/login")
+            navigate("/account")
         } else if (!authentication && authStatus !== authentication) {
             navigate("/")
         }

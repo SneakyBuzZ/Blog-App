@@ -1,16 +1,17 @@
 import "./Header.css"
-import { useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
 import { Container } from "../index"
 import LogoutBtn from "./LogoutBtn"
 import { Link } from "react-router-dom"
+import { modalToggle } from "../../store/authSlice"
+
 
 
 function Header() {
 
     const isUserActive = useSelector(state => state.user.status)
     console.log(isUserActive)
-    const navigate = useNavigate()
+    const dispatch = useDispatch()
     const navItems = [
         {
             name: "Home",
@@ -44,7 +45,7 @@ function Header() {
     ]
     return (
         <>
-            <header>
+            <header className="">
                 <Container>
                     <div className="outerHeader w-full h-14 px-3 sm:px-4 md:h-20 lg:px-10 ">
                         <div className="header mx-auto h-full flex ">
@@ -69,7 +70,7 @@ function Header() {
                                             <li key={eachItem.name}>
                                                 <button
                                                     className={`font-semibold w-12 h-6 md:w-20 md:h-10 rounded-sm sm:rounded-md mx-1 sm:mx-2 text-xs ${eachItem.classNames}`}
-                                                    onClick={() => navigate(eachItem.slug)}>
+                                                    onClick={() => dispatch(modalToggle())}>
                                                     {eachItem.name}
                                                 </button>
                                             </li>

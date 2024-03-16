@@ -2,7 +2,6 @@ import { Container, PostForm, PostCard } from "../components"
 import databaseService from "../appwrite/config"
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-
 import { useDispatch } from 'react-redux'
 import authService from "../appwrite/auth"
 import { login, logout } from "../store/authSlice"

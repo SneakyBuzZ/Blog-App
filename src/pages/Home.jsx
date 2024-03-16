@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import databaseService from "../appwrite/config"
 import { Container, Home } from "../components"
 import BlogScroll from "../components/blogscroll/BlogScroll"
+import AuthModal from "../components/modal/AuthModal"
+import { Login } from "../components"
 
 
 function HomePage() {
@@ -22,6 +24,9 @@ function HomePage() {
             <div className="w-full">
                 <Container>
                     <Home />
+                    <AuthModal>
+                        <Login />
+                    </AuthModal>
                     <BlogScroll />
                 </Container>
             </div>

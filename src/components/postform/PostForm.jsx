@@ -3,7 +3,9 @@ import { useForm } from "react-hook-form"
 import { RTEditor, Button, Input, Select } from "../index"
 import databaseService from "../../appwrite/config"
 import { useNavigate } from "react-router-dom"
+import { useSelector } from "react-redux"
 // import { useSelector } from "react-redux"
+
 
 function PostForm({ post }) {
 
@@ -40,8 +42,8 @@ function PostForm({ post }) {
                 const fileId = file.$id;
                 console.log("this is FILEID : ", fileId);
                 data.featureImage = fileId;
-                console.log("this is DATA :- ", { ...data, userId: userId });
-                console.log("THIS IS USERDATA : ", userId)
+                console.log("this is DATA :- ", { ...data });
+                console.log("THIS IS USERDATA : ", userId ? "okay" : "not okay")
                 const createPost = await databaseService.createPost({ ...data, userId: userId });
                 console.log(data)
 
@@ -73,8 +75,6 @@ function PostForm({ post }) {
 
         return () => subscription.unsubscribe();
     }, [watch, slugTranform, setValue]);
-
-
 
     return (
         <>

@@ -5,7 +5,7 @@ function Home() {
             <div className="home">
                 <div className="home w-full block">
                     <div className="tittle w-full text-center">
-                        <h1 className="text-5xl sm:text-7xl py-5 sm:pt-10">Express Wave</h1>
+                        <h1 className="text-5xl sm:text-7xl py-5 sm:pt-10 ">Express Wave</h1>
                     </div>
                     <div className="description w-full pt-5 pb-24 hidden sm:block">
                         <p className="md:w-3/5 w-5/6 mx-auto text-center ">
