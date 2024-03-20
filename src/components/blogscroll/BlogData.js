@@ -56,7 +56,7 @@ const blogs = [
         reviews: 29
     },
     {
-        id: 7,
+        id: 8,
         imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8AeuMSS-mScxyf16ezpfBOBFzTpEsbXI2jQ&usqp=CAU",
         title: "Digital Detox: Unplug and Reconnect",
         content: "Disconnect from technology and reconnect with yourself and the world around you.",

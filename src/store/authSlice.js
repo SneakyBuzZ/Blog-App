@@ -4,7 +4,8 @@ const initialState = {
     user: {
         status: false,
         userData: 526,
-        showModal: false
+        showLoginModal: false,
+        showSigninModal: false
     }
 }
 
@@ -21,8 +22,11 @@ const authSlice = createSlice({
             state.user.status = false;
             state.user.userData = null;
         },
-        modalToggle: (state) => {
-            state.user.showModal = !(state.user.showModal);
+        loginModalToggle: (state) => {
+            state.user.showLoginModal = !(state.user.showLoginModal);
+        },
+        signinModalToggle: (state) => {
+            state.user.showSigninModal = !(state.user.showSigninModal);
         }
     }
 })
@@ -30,4 +34,4 @@ const authSlice = createSlice({
 const authReducer = authSlice.reducer;
 export default authReducer;
 
-export const { login, logout, modalToggle } = authSlice.actions;
+export const { login, logout, loginModalToggle, signinModalToggle } = authSlice.actions;

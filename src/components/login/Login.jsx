@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux"
-import { modalToggle, login as storeLogin, logout } from "../../store/authSlice"
-import { useNavigate, Link } from "react-router-dom";
+import { loginModalToggle, login as storeLogin, logout, signinModalToggle } from "../../store/authSlice"
+import { useNavigate } from "react-router-dom";
 import authService from "../../appwrite/auth"
 import { Input, Button } from "../index"
 
@@ -24,7 +24,7 @@ function Login() {
                     dispatch(storeLogin(currentUser))
                 }
                 navigate("/account");
-                dispatch(modalToggle());
+                dispatch(loginModalToggle());
             }
         } catch (error) {
             setError(error)
@@ -43,6 +43,11 @@ function Login() {
             })
     }, [dispatch])
 
+    const handleCrossClick = async () => {
+        dispatch(loginModalToggle())
+        dispatch(signinModalToggle())
+    }
+
     return (
         <>
             <div className="w-full px-3 py-5 flex justify-center items-center rounded-lg ">
@@ -50,11 +55,7 @@ function Login() {
                     <h1 className="text-xl md:text-3xl text-center w-full font-serif">Login</h1>
                     <div className="flex flex-col md:flex-row md:justify-center items-center w-full my-2 mt-3">
                         <span className="text-xs text-center mb-1 text-gray-500 md:mx-2 md:text-md lg:text-lg">Don&apos;t have an account?</span>
-                        <Link to="/signup">
-                            <ul>
-                                <li className="text-xs text-center text-blue-400 md:text-md lg:text-lg">Create Account!</li>
-                            </ul>
-                        </Link>
+                        <button onClick={handleCrossClick} className="text-xs text-center text-blue-400 md:text-md lg:text-lg">Create Account!</button>
                     </div>
                     {error && <div className="text-md text-center text-red-600">
                         {error}

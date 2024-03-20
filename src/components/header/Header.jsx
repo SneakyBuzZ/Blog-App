@@ -3,11 +3,12 @@ import { useDispatch, useSelector } from "react-redux"
 import { Container } from "../index"
 import LogoutBtn from "./LogoutBtn"
 import { Link } from "react-router-dom"
-import { modalToggle } from "../../store/authSlice"
+import { loginModalToggle, signinModalToggle } from "../../store/authSlice"
 
 
 
 function Header() {
+
 
     const isUserActive = useSelector(state => state.user.status)
     console.log(isUserActive)
@@ -24,7 +25,7 @@ function Header() {
             active: true
         },
         {
-            name: "Contact",
+            name: "about us",
             slug: "/contact",
             active: true
         },
@@ -34,13 +35,15 @@ function Header() {
             name: "Login",
             slug: "/login",
             active: !isUserActive,
-            classNames: "button1"
+            classNames: "button1",
+            handleClick: () => loginModalToggle()
         },
         {
-            name: "Sign In",
+            name: "Sign Up",
             slug: "/signup",
             active: !isUserActive,
-            classNames: "button2 hidden sm:block"
+            classNames: "button2 hidden sm:block",
+            handleClick: () => signinModalToggle()
         }
     ]
     return (
@@ -58,7 +61,7 @@ function Header() {
                                 <ul className="flex h-full items-center">
                                     {navItems.map((eachItem) => (
                                         eachItem.active ? (
-                                            <li key={eachItem.name} className={` text-xs mx-1 sm:text-sm md:text-md sm:mx-2 md:mx-5`}><Link to={`${eachItem.slug}`}>{eachItem.name}</Link></li>
+                                            <li key={eachItem.name} className={` text-center md:w-[4rem] w-[3.4rem] mx-1 text-xs sm:text-sm md:text-md sm:mx-2`}><Link to={`${eachItem.slug}`}>{eachItem.name}</Link></li>
                                         ) : null
                                     ))}
                                 </ul>
@@ -70,7 +73,8 @@ function Header() {
                                             <li key={eachItem.name}>
                                                 <button
                                                     className={`font-semibold w-12 h-6 md:w-20 md:h-10 rounded-sm sm:rounded-md mx-1 sm:mx-2 text-xs ${eachItem.classNames}`}
-                                                    onClick={() => dispatch(modalToggle())}>
+                                                    // onClick={() => dispatch(modalToggle())}>
+                                                    onClick={() => dispatch(eachItem.handleClick())}>
                                                     {eachItem.name}
                                                 </button>
                                             </li>
