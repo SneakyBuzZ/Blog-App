@@ -2,8 +2,6 @@ import { useSelector, useDispatch } from "react-redux"
 import { modalToggle } from "../../store/authSlice";
 import { X } from "lucide-react";
 
-
-
 function AuthModal({ children }) {
 
     const modalStatus = useSelector(state => state.user.showModal);
