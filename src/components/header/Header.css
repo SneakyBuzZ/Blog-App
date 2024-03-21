@@ -18,8 +18,8 @@
 }
 
 .buttons .button1 {
-    background-color: #373737;
-    color: #58AFFF;
+    /* background-color: #b7b7b7; */
+    /* color: #58AFFF; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -28,5 +28,5 @@
 
 .buttons .button2 {
     background-color: #58AFFF;
-    color: #232323;
+    /* color: #ffffff; */
 }

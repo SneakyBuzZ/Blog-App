@@ -5,7 +5,7 @@ function Footer() {
         <>
 
             <footer>
-                <div className="footer w-full flex flex-col items-center pb-4">
+                <div className="footer w-full flex flex-col items-center pb-4 dark:bg-[#000000db] bg-[#f6f6f6dc]">
                     <div className="footerNav flex flex-col sm:flex-row items-center h-3/5 sm:h-2/4 justify-evenly py-8">
                         <div className="navigate">
                             <h1 className=" mb-1 sm:text-md md:text-lg text-sm">Navigate</h1>

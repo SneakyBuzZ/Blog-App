@@ -5,8 +5,9 @@ const initialState = {
         status: false,
         userData: 526,
         showLoginModal: false,
-        showSigninModal: false
-    }
+        showSigninModal: false,
+    },
+    theme: "dark"
 }
 
 
@@ -27,6 +28,12 @@ const authSlice = createSlice({
         },
         signinModalToggle: (state) => {
             state.user.showSigninModal = !(state.user.showSigninModal);
+        },
+        setDarkMode: (state) => {
+            state.theme = "dark"
+        },
+        setLightMode: (state) => {
+            state.theme = "light"
         }
     }
 })
