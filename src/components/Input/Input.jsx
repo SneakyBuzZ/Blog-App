@@ -14,7 +14,7 @@ const Input = forwardRef(function Input({
                 {label && (
                     <label
                         htmlFor={id}
-                        className="inline-block mb-1 pl-1 text-sm md:text-lg text-gray-600"
+                        className="inline-block mb-1 pl-1 text-sm md:text-lg text-gray-600 "
                     >
                         {label}
                     </label>
@@ -22,7 +22,7 @@ const Input = forwardRef(function Input({
                 )}
                 <input
                     type={type}
-                    className={`px-3 py-2 rounded-md outline-none w-full text-sm md:text-lg ${className}`}
+                    className={`px-3 py-2 rounded-md outline-none w-full text-sm md:text-lg ${className} dark:bg-[#3c3c3c]`}
                     ref={ref}
                     id={id}
                     {...props} />

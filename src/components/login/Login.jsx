@@ -52,7 +52,7 @@ function Login() {
         <>
             <div className="w-full px-3 py-5 flex justify-center items-center rounded-lg ">
                 <div className="flex flex-col w-5/6">
-                    <h1 className="text-xl md:text-3xl text-center w-full font-serif">Login</h1>
+                    <h1 className="text-xl md:text-3xl text-center w-full font-serif dark:text-gray-100">Login</h1>
                     <div className="flex flex-col md:flex-row md:justify-center items-center w-full my-2 mt-3">
                         <span className="text-xs text-center mb-1 text-gray-500 md:mx-2 md:text-md lg:text-lg">Don&apos;t have an account?</span>
                         <button onClick={handleCrossClick} className="text-xs text-center text-blue-400 md:text-md lg:text-lg">Create Account!</button>

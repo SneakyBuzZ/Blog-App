@@ -36,7 +36,7 @@ function Header() {
             name: "Login",
             slug: "/login",
             active: !isUserActive,
-            classNames: "button1 bg-gray-300 dark:bg-[#191919]",
+            classNames: "button1 bg-gray-300 dark:bg-[#191919] text-sky-400",
             handleClick: () => loginModalToggle()
         },
         {
@@ -73,7 +73,7 @@ function Header() {
                                         eachItem.active ? (
                                             <li key={eachItem.name}>
                                                 <button
-                                                    className={` text-sky-400 font-extrabold w-12 h-6 md:w-20 md:h-10 rounded-sm sm:rounded-md mx-1 sm:mx-2 text-xs ${eachItem.classNames}`}
+                                                    className={`  font-extrabold w-12 h-6 md:w-20 md:h-10 rounded-sm sm:rounded-md mx-1 sm:mx-2 text-xs ${eachItem.classNames}`}
                                                     // onClick={() => dispatch(modalToggle())}>
                                                     onClick={() => dispatch(eachItem.handleClick())}>
                                                     {eachItem.name}
