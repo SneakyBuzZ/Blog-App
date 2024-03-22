@@ -5,7 +5,7 @@ import "./PostCard.css"
 function Postcard({ $id, title, featureImage }) {
     return (
         <>
-            <Link to={`/post/${$id}`}>
+            <Link to={`/account/${$id}`}>
                 <div className="card">
                     <img src={databaseService.getFilePreview(featureImage)} alt={title} />
                     <h1>{title}</h1>
