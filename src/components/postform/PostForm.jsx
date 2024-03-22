@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form"
 import { RTEditor, Button, Input, Select } from "../index"
 import databaseService from "../../appwrite/config"
 import { useNavigate } from "react-router-dom"
-import { useSelector } from "react-redux"
+// import { useSelector } from "react-redux"
 // import { useSelector } from "react-redux"
 
 
@@ -11,9 +11,9 @@ function PostForm({ post }) {
 
     const { register, handleSubmit, watch, setValue, control, getValues } = useForm({
         defaultValues: {
-            title: post?.title || '',
-            slug: post?.slug || '',
-            content: post?.content || '',
+            title: post?.title || 'default name',
+            slug: post?.slug || 'default slug',
+            content: post?.content || 'default content',
             status: post?.status || 'active',
         }
     })
@@ -49,7 +49,7 @@ function PostForm({ post }) {
 
                 if (createPost) {
                     console.log("POSTED!")
-                    navigate(`/post/${createPost.$id}`)
+                    navigate(`/account/allposts`)
                 }
             }
         }
