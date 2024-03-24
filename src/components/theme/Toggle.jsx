@@ -23,7 +23,7 @@ export default function Toggle() {
                     onChange={themeChange}
                     checked={theme === "dark"}
                 />
-                <div className="w-11 mt-[3px] h-7 bg-gray-300 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#f6f6f6dc] dark:peer-focus:ring-[#0a0a0acf] rounded-full peer dark:bg-stone-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[6px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-[#191919]"></div>
+                <div className="w-9 mt-[3px] h-5 bg-slate-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#f6f6f6dc] dark:peer-focus:ring-[#0a0a0acf] rounded-full peer dark:bg-stone-700 peer-checked:after:translate-x-full peer-checked:after:border-black after:content-[''] after:absolute after:top-[4px] after:left-[-1px] dark:after:bg-blue-500 after:bg-sky-400 after:border-white after:border after:rounded-full after:h-4 after:w-4 after:mb-5 after:transition-all dark:border-gray-600 peer-checked:bg-[#191919]"></div>
             </label>
         </div>
     );

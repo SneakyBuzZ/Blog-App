@@ -3,7 +3,7 @@ function Home() {
     return (
         <>
             <div className="home">
-                <div className="home w-full block dark:bg-[#000000db] bg-[#f6f6f6dc]">
+                <div className="home w-full block dark:bg-[#000000db] bg-[#ffffffdc]">
                     <div className="tittle w-full text-center">
                         <h1 className="text-5xl sm:text-7xl py-5 sm:pt-10 ">Express Wave</h1>
                     </div>

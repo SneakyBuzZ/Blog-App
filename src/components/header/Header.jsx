@@ -4,8 +4,7 @@ import { Container } from "../index"
 import LogoutBtn from "./LogoutBtn"
 import { Link } from "react-router-dom"
 import { loginModalToggle, signinModalToggle } from "../../store/authSlice"
-import Toggle from "../theme/Toggle"
-
+import Togglemode from "../theme/Toggle"
 
 
 function Header() {
@@ -51,7 +50,7 @@ function Header() {
         <>
             <header className="">
                 <Container>
-                    <div className="outerHeader w-full h-14 px-3 sm:px-4 md:h-20 lg:px-10 dark:bg-[#000000db] bg-[#f6f6f6dc]">
+                    <div className="outerHeader w-full h-14 px-3 sm:px-4 md:h-20 lg:px-10 dark:bg-[#000000db] bg-[#ffffffdc]">
                         <div className="header mx-auto h-full flex ">
                             <div className="logo flex justify-center items-center h-full">
                                 <Link to="/">
@@ -88,7 +87,9 @@ function Header() {
                                     )}
                                 </ul>
                             </div>
-                            <Toggle />
+
+                            <Togglemode />
+
                         </div>
                     </div>
                 </Container>

@@ -34,10 +34,10 @@ function Account() {
     return loading ? (
         <>
             <div className="flex ">
-                <div className="w-1/4 h-[70rem]">
+                <div className=" w-1/6">
                     <ManagePosts />
                 </div>
-                <div className="py-8 w-3/4">
+                <div className="py-8 w-5/6 h-full">
                     <Container>
                         <div className="flex flex-col justify-evenly items-center w-full">
                             <h1 className="text-md text-black">THIS IS OUTLET</h1>
