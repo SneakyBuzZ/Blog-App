@@ -5,7 +5,7 @@ function AllBlog() {
         <div>
             <ul className="flex h-full flex-col">
                 {blogs.map((eachItem) => (
-                    <div key={eachItem.id} className="dark:bg-[#191919a8] bg-[#ffffff6e] w-full my-10 md:my-6 items-center justify-center flex flex-col md:flex-row p-5 md:p-7 rounded-lg md:rounded-xl">
+                    <div key={eachItem.id} className="dark:bg-[#191919a8] bg-[#fafafa]  w-full my-10 md:my-6 items-center justify-center flex flex-col md:flex-row p-5 md:p-7 rounded-lg md:rounded-xl">
                         <div className="imageBox w-full md:w-5/12 h-full md:h-48 ">
                             <img className="  mx-auto block w-full h-full rounded-lg" alt="art cover" loading="lazy" src={eachItem.imageUrl} />
                         </div>

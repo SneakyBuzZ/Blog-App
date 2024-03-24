@@ -2,9 +2,10 @@ import "./Header.css"
 import { useDispatch, useSelector } from "react-redux"
 import { Container } from "../index"
 import LogoutBtn from "./LogoutBtn"
-import { Link } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 import { loginModalToggle, signinModalToggle } from "../../store/authSlice"
 import Togglemode from "../theme/Toggle"
+
 
 
 function Header() {
@@ -61,7 +62,7 @@ function Header() {
                                 <ul className="flex h-full items-center">
                                     {navItems.map((eachItem) => (
                                         eachItem.active ? (
-                                            <li key={eachItem.name} className={`dark:text-blue-400 text-sky-400 font-extrabold text-center md:w-[4rem] w-[3.4rem] mx-1 text-xs sm:text-sm md:text-md sm:mx-2`}><Link to={`${eachItem.slug}`}>{eachItem.name}</Link></li>
+                                            <li key={eachItem.name} className="dark:text-blue-400 text-sky-400 font-extrabold text-center md:w-[4rem] w-[3.4rem] mx-1 text-xs sm:text-sm md:text-md sm:mx-2"><NavLink className={({ isActive }) => `${isActive ? "dark:text-blue-400 text-sky-400" : "dark:text-gray-400 font-thin"}`} to={`${eachItem.slug}`}>{eachItem.name}</NavLink></li>
                                         ) : null
                                     ))}
                                 </ul>
