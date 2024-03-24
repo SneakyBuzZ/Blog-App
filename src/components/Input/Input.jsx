@@ -10,11 +10,11 @@ const Input = forwardRef(function Input({
     const id = useId()
     return (
         <>
-            <div className="">
+            <div className="my-3">
                 {label && (
                     <label
                         htmlFor={id}
-                        className="inline-block mb-1 pl-1 text-sm md:text-lg text-gray-600 "
+                        className="inline-block mb-1 pl-1  dark:md:text-md dark:text-white text-stone-400"
                     >
                         {label}
                     </label>
@@ -22,7 +22,7 @@ const Input = forwardRef(function Input({
                 )}
                 <input
                     type={type}
-                    className={`px-3 py-2 rounded-md outline-none w-full text-sm md:text-lg ${className} dark:bg-[#3c3c3c]`}
+                    className={`px-3 py-2 text-stone-500 dark:text-black rounded-md outline-none w-full text-[10px] md:text-lg ${className} bg-white border dark:border-none dark:bg-[#ffff]`}
                     ref={ref}
                     id={id}
                     {...props} />

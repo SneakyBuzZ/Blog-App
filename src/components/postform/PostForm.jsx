@@ -78,11 +78,11 @@ function PostForm({ post }) {
 
     return (
         <>
-            <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
-                <div className="w-full px-3 py-5 flex justify-center items-center border border-black rounded-lg">
+            <form onSubmit={handleSubmit(submit)} className="flex flex-wrap px-5 md:w-1/2 dark:opacity-60">
+                <div className="w-full px-3 py-5 flex justify-center items-center bg-[#ffffff] dark:bg-[#202020] rounded-lg">
                     <div className="flex flex-col">
                         <Input
-                            label="title"
+                            label="Write the Perfect Title"
                             placeholder="title"
                             onInput={(e) => {
                                 setValue("slug", slugTranform(e.currentTarget.value), { shouldValidate: true });
@@ -90,17 +90,17 @@ function PostForm({ post }) {
                             {...register("title", { required: true })}
                         />
                         <Input
-                            label="slug"
+                            label="Slug of the title"
                             placeholder="slug"
                             {...register("slug", { required: true })}
 
                         />
-                        <RTEditor label="content: "
+                        <RTEditor label="Write about your post"
                             name="content"
                             control={control}
                             defaultValue={getValues("content")} />
                         <Input
-                            label="featured image"
+                            label="Attached an Image to your post"
                             type="file"
                             className="mb-3"
                             accept="image/png , image.jpg , image/jpeg , image/gif"
@@ -117,7 +117,7 @@ function PostForm({ post }) {
                         }
                         <Select
                             option={["active", "inactive"]}
-                            label="status"
+                            label="Choose a status"
                             className="mb-4"
                             {...register("status", { required: true })}
                         />
