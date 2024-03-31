@@ -42,6 +42,7 @@ function Account() {
                         <div className="flex flex-col justify-evenly items-center w-full">
                             <h1 className="text-md text-black">THIS IS OUTLET</h1>
                             <Outlet />
+
                         </div>
                     </Container>
                 </div>

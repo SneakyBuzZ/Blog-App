@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form"
 import { RTEditor, Button, Input, Select } from "../index"
 import databaseService from "../../appwrite/config"
 import { useNavigate } from "react-router-dom"
+import authService from "@/appwrite/auth"
 // import { useSelector } from "react-redux"
 // import { useSelector } from "react-redux"
 
@@ -19,10 +20,13 @@ function PostForm({ post }) {
     })
 
     const navigate = useNavigate();
-    const userId = "65ed5990922e58642ac1";
+
+
+
 
 
     const submit = async (data) => {
+        const userData = await authService.getCurrentUser();
         if (post) {
             const file = data.featureImage[0] ? await databaseService.uploadFile(data.featureImage[0]) : null;
 
@@ -40,11 +44,8 @@ function PostForm({ post }) {
 
             if (file) {
                 const fileId = file.$id;
-                console.log("this is FILEID : ", fileId);
                 data.featureImage = fileId;
-                console.log("this is DATA :- ", { ...data });
-                console.log("THIS IS USERDATA : ", userId ? "okay" : "not okay")
-                const createPost = await databaseService.createPost({ ...data, userId: userId });
+                const createPost = await databaseService.createPost({ ...data, userId: userData.$id });
                 console.log(data)
 
                 if (createPost) {
@@ -78,6 +79,7 @@ function PostForm({ post }) {
 
     return (
         <>
+
             <form onSubmit={handleSubmit(submit)} className="flex flex-wrap px-5 md:w-1/2 dark:opacity-60">
                 <div className="w-full px-3 py-5 flex justify-center items-center bg-[#ffffff] dark:bg-[#202020] rounded-lg">
                     <div className="flex flex-col">
