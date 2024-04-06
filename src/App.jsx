@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 
 function App() {
 
-  const [theme, settheme] = useState("light")
+  const [theme, settheme] = useState("dark")
 
   const darkmode = () => {
     settheme("dark");
