@@ -24,6 +24,10 @@
     @apply text-[#FFD600]
   }
 
+  .ex-text-gray {
+    @apply text-[#8A8A8A]
+  }
+
   .ex-bg-gray {
     @apply bg-[#1D1D1D]
   }

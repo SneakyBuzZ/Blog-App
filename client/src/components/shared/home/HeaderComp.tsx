@@ -1,5 +1,5 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import navItems from "../../utils/constants/navItems";
+import navItems from "../../../utils/constants/navItems";
 
 function HeaderComp() {
   const navigate = useNavigate();

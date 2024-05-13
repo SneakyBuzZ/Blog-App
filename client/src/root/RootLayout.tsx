@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
-import HeaderComp from "../components/shared/HeaderComp";
-import FooterComp from "../components/shared/FooterComp";
+import HeaderComp from "../components/shared/home/HeaderComp";
+import FooterComp from "../components/shared/home/FooterComp";
 
 function RootLayout() {
   return (
