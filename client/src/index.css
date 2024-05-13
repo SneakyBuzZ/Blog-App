@@ -13,3 +13,23 @@
     @apply min-h-screen bg-black;
   }
 }
+
+@layer utilities {
+
+  .ex-text-white {
+    @apply text-[#C1C1C1]
+  }
+
+  .ex-text-yellow {
+    @apply text-[#FFD600]
+  }
+
+  .ex-bg-gray {
+    @apply bg-[#1D1D1D]
+  }
+
+  .ex-bg-yellow {
+    @apply bg-[#FFD600]
+  }
+
+}
