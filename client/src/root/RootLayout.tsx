@@ -1,12 +1,13 @@
 import { Outlet } from "react-router-dom";
 import HeaderComp from "../components/shared/HeaderComp";
+import FooterComp from "../components/shared/FooterComp";
 
 function RootLayout() {
   return (
     <>
       <HeaderComp />
       <Outlet />
-      <h1 className="text-white">FOOTER</h1>
+      <FooterComp />
     </>
   );
 }

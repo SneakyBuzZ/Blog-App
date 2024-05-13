@@ -1,7 +1,15 @@
+import AnalysisComp from "../../components/shared/AnalysisComp";
+import BentoBoxComp from "../../components/shared/BentoBoxComp";
+import SearchComp from "../../components/shared/SearchComp";
+import TestimonyComp from "../../components/shared/TestimonyComp";
+
 function HomePage() {
   return (
     <>
-      <h1 className="text-white text-2xl">THIS IS HOME PAGE</h1>
+      <SearchComp />
+      <AnalysisComp />
+      <BentoBoxComp />
+      <TestimonyComp />
     </>
   );
 }

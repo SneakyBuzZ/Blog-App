@@ -4,12 +4,12 @@ const navItems = [
     label: "Home",
   },
   {
-    route: "/about",
-    label: "About",
-  },
-  {
     route: "/blogs",
     label: "Blogs",
+  },
+  {
+    route: "/about",
+    label: "About",
   },
   {
     route: "/features",

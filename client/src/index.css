@@ -10,7 +10,7 @@
   }
 
   body {
-    @apply min-h-screen bg-black;
+    @apply min-h-screen bg-black font-DM;
   }
 }
 
@@ -32,4 +32,24 @@
     @apply bg-[#FFD600]
   }
 
+  .ex-bg-lightgray {
+    @apply bg-[#353535]
+  }
+
+  .ex-header-shadow {
+    box-shadow: 0px 41px 146px #0000005c;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0A0A0A;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1d1d1d;
+  border-radius: 10px;
 }

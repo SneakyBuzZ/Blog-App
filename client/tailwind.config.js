@@ -5,7 +5,13 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        lobster: ['Lobster Two'],
+        unica: ['Unica One'],
+        DM: ['DM Sans']
+      }
+    },
   },
   plugins: [],
 }

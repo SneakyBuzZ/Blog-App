@@ -14,7 +14,7 @@ function HeaderComp() {
 
   return (
     <>
-      <header className="text-gray-600 body-font">
+      <header className="text-gray-600 body-font ex-header-shadow">
         <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center justify-evenly">
           <NavLink
             to="/"
@@ -33,7 +33,7 @@ function HeaderComp() {
                         ? " ex-text-yellow "
                         : " ex-text-white hover:text-gray-400"
                     }
-                            mr-5 cursor-pointer`
+                            mr-5 cursor-pointer active:scale-95`
                   }
                 >
                   <h1 className="text-md lg:text-lg ">{eachItem.label}</h1>
@@ -44,13 +44,13 @@ function HeaderComp() {
           <div className="flex gap-5">
             <button
               onClick={handleLogin}
-              className="inline-flex items-center justify-center ex-bg-gray ex-text-white border-0 py-2 w-20 rounded text-base mt-4 md:mt-0"
+              className="inline-flex items-center justify-center ex-bg-gray ex-text-white border-0 py-2 w-20 rounded text-base mt-4 md:mt-0 active:scale-95"
             >
               Login
             </button>
             <button
               onClick={handleRegister}
-              className="inline-flex items-center justify-center ex-bg-yellow text-black border-0 py-2 w-20  rounded text-base mt-4 md:mt-0"
+              className="inline-flex items-center justify-center ex-bg-yellow text-black border-0 py-2 w-20  rounded text-base mt-4 md:mt-0 active:scale-95"
             >
               Register
             </button>
