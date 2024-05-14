@@ -1,20 +1,22 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import AuthLayout from "./auth/AuthLayout";
-import LoginPage from "./auth/pages/LoginPage";
-import RegisterPage from "./auth/pages/RegisterPage";
-import HomePage from "./root/pages/HomePage";
-import AboutPage from "./root/pages/AboutPage";
-import BlogsPage from "./root/pages/BlogsPage";
-import RootLayout from "./root/RootLayout";
-import NotFoundPage from "./root/pages/NotFoundPage";
+import { Route, Routes } from "react-router-dom";
+import AuthLayout from "./_auth/AuthLayout";
+import HomePage from "./_root/pages/HomePage";
+import AboutPage from "./_root/pages/AboutPage";
+import BlogsPage from "./_root/pages/BlogsPage";
+import RootLayout from "./_root/RootLayout";
+import NotFoundPage from "./_root/pages/NotFoundPage";
+import LoginForm from "./_auth/pages/LoginForm";
+import RegisterForm from "./_auth/pages/RegisterForm";
+
+import { Toaster } from "@/components/ui/toaster";
 function App() {
   return (
     <>
-      <BrowserRouter>
+      <main className="flex flex-col h-screen">
         <Routes>
           <Route element={<AuthLayout />}>
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/login" element={<LoginForm />} />
+            <Route path="/register" element={<RegisterForm />} />
           </Route>
 
           <Route element={<RootLayout />}>
@@ -25,7 +27,8 @@ function App() {
 
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
-      </BrowserRouter>
+        <Toaster />
+      </main>
     </>
   );
 }

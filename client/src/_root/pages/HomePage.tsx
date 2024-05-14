@@ -1,7 +1,9 @@
-import AnalysisComp from "../../components/shared/home/AnalysisComp";
-import BentoBoxComp from "../../components/shared/home/BentoBoxComp";
-import SearchComp from "../../components/shared/home/SearchComp";
-import TestimonyComp from "../../components/shared/home/TestimonyComp";
+import {
+  AnalysisComp,
+  BentoBoxComp,
+  SearchComp,
+  TestimonyComp,
+} from "@/components/shared/home";
 
 function HomePage() {
   return (

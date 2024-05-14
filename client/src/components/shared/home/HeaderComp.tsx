@@ -1,5 +1,6 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import navItems from "../../../utils/constants/navItems";
+import navItems from "../../../lib/constants/navItems";
+import { Button } from "@/components/ui/button";
 
 function HeaderComp() {
   const navigate = useNavigate();
@@ -42,18 +43,18 @@ function HeaderComp() {
             ))}
           </nav>
           <div className="flex gap-5">
-            <button
+            <Button
               onClick={handleLogin}
-              className="inline-flex items-center justify-center ex-bg-gray ex-text-white border-0 py-2 w-20 rounded text-base mt-4 md:mt-0 active:scale-95"
+              className="ex-bg-gray py-2 w-20 ex-text-white hover:text-white hover:bg-stone-800"
             >
               Login
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={handleRegister}
-              className="inline-flex items-center justify-center ex-bg-yellow text-black border-0 py-2 w-20  rounded text-base mt-4 md:mt-0 active:scale-95"
+              className="ex-bg-yellow py-2 w-20 text-black hover:bg-yellow-400 hover:text-stone-800"
             >
               Register
-            </button>
+            </Button>
           </div>
         </div>
       </header>

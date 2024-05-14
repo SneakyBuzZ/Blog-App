@@ -6,7 +6,7 @@ function FooterComp() {
       <footer className="text-gray-600 body-font">
         <div className="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col w-2/3">
           <div className="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left md:mt-0 mt-10">
-            <a className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+            <div className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
               <NavLink
                 to="/"
                 className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
@@ -16,7 +16,7 @@ function FooterComp() {
               <h1 className=" font-lobster text-2xl ex-text-yellow">
                 Express Wave
               </h1>
-            </a>
+            </div>
             <p className="mt-2 text-sm ex-text-gray">
               Air plant banjo lyft occupy retro adaptogen indego
             </p>

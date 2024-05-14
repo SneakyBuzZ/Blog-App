@@ -1,4 +1,4 @@
-import analyticsItems from "../../../utils/constants/analyticstems";
+import analyticsItems from "../../../lib/constants/analyticstems";
 
 function AnalysisComp() {
   return (

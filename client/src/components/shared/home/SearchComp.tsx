@@ -11,7 +11,7 @@ function SearchComp() {
         <div className="flex flex-row w-full justify-center items-center border-none">
           <input
             type="text"
-            className="ex-bg-lightgray px-14 py-3 rounded-l-md h-14 w-1/3 focus:outline-none ex-text-white text-lg"
+            className="ex-bg-lightgray bg-stone-800 px-14 py-3 rounded-l-md h-14 w-1/3 focus:outline-none ex-text-white text-lg"
           />
           <button className="flex items-center justify-center gap-1 ex-bg-gray py-3 px-8 rounded-r-md border-0 h-14 active:scale-95">
             <svg
