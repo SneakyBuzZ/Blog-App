@@ -63,22 +63,15 @@ const generateAccessAndFreshTokens = async (userId) => {
 }
 
 const loginUser = asyncHandler(async (req, res) => {
-    //GET DETAILS
-    //VERIFY USER WITH USERNAME OR EMAIL
-    //FIND USER
-    //PASSWORD CHECK USING BCRYPT
-    //GENERATE AND GIVE  ACCESS AND REFRESH TOKENS
-    //SEND COOKIE
-
     //==================== GET USER DETAIKS ==========================
-    const { username, email, password } = req.body;
+    const { email, password } = req.body;
 
     //==================== CHECK EITHER EMAIL OR PASSWORD ==========================
-    if (!(username || email)) throw new ApiError(401, "Email or username is required");
+    if (!email) throw new ApiError(401, "Email or username is required");
 
     //==================== FIND USER FROM DB ==========================
     const user = await User.findOne({
-        $or: [{ username }, { email }]
+        $or: [{ email }]
     })
 
     if (!user) throw new ApiError(400, "User doesnot exist");

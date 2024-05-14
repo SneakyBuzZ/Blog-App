@@ -30,8 +30,8 @@ function LoginForm() {
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof LoginSchema>) {
     try {
-      const response = await axios.post("/your-api-endpoint", values);
-      console.log("Data successfully posted:", response.data);
+      const response = await axios.post("/expresswave/api/users/login", values);
+      console.log("Data successfully posted:", response.data.data.user);
       navigate("/");
       toast({
         description: "Login was successful",

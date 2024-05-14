@@ -21,7 +21,7 @@ function HeaderComp() {
             to="/"
             className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
           >
-            <img className=" h-14" src="/expresswave.png" alt="" />
+            <img className=" h-14" src="/exwave.png" alt="" />
           </NavLink>
           <nav className="flex flex-wrap items-center text-base w-2/3 gap-5">
             {navItems.map((eachItem) => (

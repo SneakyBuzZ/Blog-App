@@ -11,7 +11,7 @@ function FooterComp() {
                 to="/"
                 className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
               >
-                <img className=" h-14" src="/expresswave.png" alt="" />
+                <img className=" h-14" src="/exwave.png" alt="" />
               </NavLink>
               <h1 className=" font-lobster text-2xl ex-text-yellow">
                 Express Wave
