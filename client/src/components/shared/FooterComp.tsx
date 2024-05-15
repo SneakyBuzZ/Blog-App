@@ -17,7 +17,7 @@ function FooterComp() {
                 Express Wave
               </h1>
             </div>
-            <p className="mt-2 text-sm ex-text-gray">
+            <p className="mt-2 text-sm ex-text-gray ml-5">
               Air plant banjo lyft occupy retro adaptogen indego
             </p>
           </div>
@@ -81,7 +81,7 @@ function FooterComp() {
             </div>
           </div>
         </div>
-        <div className="bg-gray-100">
+        <div className="ex-bg-gray ex-footer-shadow">
           <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
             <p className="text-gray-500 text-sm text-center sm:text-left">
               © 2020 Tailblocks —

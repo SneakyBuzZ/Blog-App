@@ -15,15 +15,17 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import { useToast } from "@/components/ui/use-toast";
+import useUserStore from "@/lib/store/userStore";
 
 function LoginForm() {
   const navigate = useNavigate();
   const { toast } = useToast();
+  const useStore = useUserStore();
   // 1. Define your form.
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
-      email: "",
+      email: useStore?.user?.email || "",
       password: "",
     },
   });
@@ -31,7 +33,13 @@ function LoginForm() {
   async function onSubmit(values: z.infer<typeof LoginSchema>) {
     try {
       const response = await axios.post("/expresswave/api/users/login", values);
-      console.log("Data successfully posted:", response.data.data.user);
+      const loggedInUser = {
+        username: response.data.data.user.username,
+        fullName: response.data.data.user.fullName,
+        email: response.data.data.user.email,
+        avatar: response.data.data.user.avatar,
+      };
+      useStore?.addUser?.(loggedInUser);
       navigate("/");
       toast({
         description: "Login was successful",
@@ -40,8 +48,7 @@ function LoginForm() {
     } catch (error) {
       console.error("Error posting data:", error);
       toast({
-        title: "Error posting data",
-        description: "Failed to post data to the database",
+        title: "Failed to login",
         className: "text-red-400",
       });
     }

@@ -10,7 +10,7 @@ function HomePage() {
     <>
       <div className="w-full flex flex-col justify-center items-center gap-5">
         <SearchComp />
-        <div className="w-2/3">
+        <div className="w-10/12">
           <AnalysisComp />
         </div>
         <div className="w-5/6">

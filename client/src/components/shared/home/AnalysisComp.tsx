@@ -1,36 +1,81 @@
-import analyticsItems from "../../../lib/constants/analyticstems";
+// import analyticsItems from "../../../lib/constants/analyticstems";
 
 function AnalysisComp() {
   return (
     <>
-      <section className="ex-text-white">
-        <div className="container px-5 py-24 mx-auto ">
-          <div className="flex flex-wrap -mx-4 -my-8">
-            {analyticsItems.map((eachItem) => (
-              <div className="py-8 px-4 lg:w-1/3" key={eachItem.category}>
-                <div className="h-full flex items-start">
-                  <div className="w-12 flex-shrink-0 flex flex-col text-center leading-none">
-                    <span className="text-gray-500 pb-2 mb-2 border-b-2 border-gray-200">
-                      {eachItem.month}
-                    </span>
-                    <span className="font-medium text-lg text-gray-800 title-font leading-none">
-                      {eachItem.day}
-                    </span>
-                  </div>
-                  <div className="flex-grow pl-6">
-                    <h1 className="title-font text-xl font-medium text-gray-900 mb-3 ex-text-yellow">
-                      {eachItem.category}
-                    </h1>
-                    <p className="leading-relaxed mb-5 ex-text-gray">
-                      {eachItem.content}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
+      <div className="w-full px-20 flex flex-col items-center mt-16 lg:flex-row gap-10">
+        <p className="ex-text-gray">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque alias
+        </p>
+        <div className="stats shadow flex flex-col lg:flex-row ex-text-white  justify-center gap-20 lg:ml-20">
+          <div className="stat flex items-center">
+            <div className="flex flex-col">
+              <div className="stat-title ">Downloads</div>
+              <div className="stat-value text-4xl ex-text-yellow">31K</div>
+            </div>
+            <div className="stat-figure text-secondary ml-5">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                className="inline-block w-8 h-8 stroke-current"
+                stroke="ex-bg-yellow"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+              </svg>
+            </div>
+          </div>
+
+          <div className="stat flex items-center">
+            <div className="flex flex-col ">
+              <div className="stat-title ">Users</div>
+              <div className="stat-value text-4xl ex-text-yellow">4,200</div>
+            </div>
+            <div className="stat-figure text-secondary ml-5">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                className="inline-block w-8 h-8 stroke-current"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+                ></path>
+              </svg>
+            </div>
+          </div>
+
+          <div className="stat flex items-center">
+            <div className="flex flex-col">
+              <div className="stat-title">Registers</div>
+              <div className="stat-value text-4xl ex-text-yellow">1,200</div>
+            </div>
+            <div className="stat-figure text-secondary ml-5">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                className="inline-block w-8 h-8 stroke-current"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"
+                ></path>
+              </svg>
+            </div>
           </div>
         </div>
-      </section>
+      </div>
     </>
   );
 }

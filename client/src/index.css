@@ -153,3 +153,11 @@ body {
 .ex-header-shadow {
   box-shadow: 0px 41px 146px #0000005c;
 }
+
+.ex-footer-shadow {
+  box-shadow: 0px -25px 205px #ffffff96;
+}
+
+.ex-search-shadow {
+  box-shadow: 0px 1px 300px #656565b5;
+}

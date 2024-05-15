@@ -12,8 +12,16 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { RegisterSchema } from "@/lib/validation";
+import { useToast } from "@/components/ui/use-toast";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import useUserStore from "@/lib/store/userStore";
+import { IUser } from "@/lib/types";
 
 function RegisterForm() {
+  const userStore = useUserStore();
+  const { toast } = useToast();
+  const navigate = useNavigate();
   // 1. Define your form.
   const form = useForm<z.infer<typeof RegisterSchema>>({
     resolver: zodResolver(RegisterSchema),
@@ -26,10 +34,32 @@ function RegisterForm() {
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof RegisterSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof RegisterSchema>) {
+    try {
+      const response = await axios.post(
+        "/expresswave/api/users/register",
+        values
+      );
+      const user: IUser = {
+        username: response?.data?.data?.username,
+        fullName: response?.data?.data?.fullName,
+        email: response?.data?.data?.email,
+        avatar: response?.data?.data?.avatar,
+      };
+      userStore?.addUser?.(user);
+      navigate("/");
+      navigate("/login");
+      toast({
+        description: "Registeration was successful",
+        className: "text-green-400",
+      });
+    } catch (error) {
+      console.error("Failed to register: ", error);
+      toast({
+        title: "Failed to register",
+        className: "text-red-400",
+      });
+    }
   }
   return (
     <>
