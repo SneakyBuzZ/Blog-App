@@ -223,9 +223,9 @@ const getCurrentUser = asyncHandler(async (req, res) => {
 })
 
 const updateAccountDetails = asyncHandler(async (req, res) => {
-    const { fullName, email, username, bio } = req.body
+    const { fullName, email, username, } = req.body
 
-    if (!(fullName && email && username && bio)) throw new ApiError(401, "All fields are required")
+    if (!(fullName && email && username)) throw new ApiError(401, "All fields are required")
 
 
 
@@ -238,7 +238,6 @@ const updateAccountDetails = asyncHandler(async (req, res) => {
                 fullName,
                 email,
                 username,
-                bio,
             }
         },
         {

@@ -7,10 +7,15 @@ import {
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import useUserStore from "@/lib/store/userStore";
+import { useNavigate } from "react-router-dom";
 
 function AvatarComp() {
   const useStore = useUserStore();
   const currentUser = useStore.user;
+  const navigate = useNavigate();
+  const handleProfile = () => {
+    navigate(`/profile/${currentUser.username}`);
+  };
   return (
     <>
       <DropdownMenu>
@@ -21,7 +26,10 @@ function AvatarComp() {
           </Avatar>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="ex-bg-gray border-none ex-text-gray">
-          <DropdownMenuItem className=" hover:text-yellow-200">
+          <DropdownMenuItem
+            onClick={handleProfile}
+            className=" hover:text-yellow-200"
+          >
             Profile
           </DropdownMenuItem>
           <DropdownMenuItem>Billing</DropdownMenuItem>

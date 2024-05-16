@@ -9,8 +9,8 @@ function NotFoundPage() {
             src="https://dummyimage.com/600x600"
           />
           <div className="text-center lg:w-2/3 w-full">
-            <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
-              Microdosing synth tattooed vexillologist
+            <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium ex-text-white">
+              404 NOT FOUND
             </h1>
             <p className="mb-8 leading-relaxed">
               Meggings kinfolk echo park stumptown DIY, kale chips beard

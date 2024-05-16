@@ -129,6 +129,10 @@ body {
   background-color: #1D1D1D;
 }
 
+.ex-bg-darkgray {
+  background-color: #0D0D0D;
+}
+
 .ex-bg-lightgray {
   background-color: #353535;
 }
@@ -160,4 +164,8 @@ body {
 
 .ex-search-shadow {
   box-shadow: 0px 1px 300px #656565b5;
+}
+
+.ex-editprofile-shadow {
+  box-shadow: 0px 21px 330px #ffffff78;
 }

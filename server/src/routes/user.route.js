@@ -29,10 +29,6 @@ userRouter.route("/update-avatar").patch(
             name: "avatar",
             maxCount: 1
         },
-        {
-            name: "coverImage",
-            maxCount: 1
-        }
     ]),
     updateAvatar
 )
