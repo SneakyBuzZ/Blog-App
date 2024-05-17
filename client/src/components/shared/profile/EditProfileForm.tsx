@@ -8,7 +8,6 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -27,7 +26,6 @@ function EditProfileForm() {
       username: useStore?.user?.username || "",
       fullName: useStore?.user?.fullName || "",
       email: useStore?.user?.email || "",
-      avatar: "",
     },
   });
 
@@ -38,22 +36,25 @@ function EditProfileForm() {
       fullName: values.fullName,
       email: values.email,
     };
+
+    const updatedUser = {
+      username: "",
+      fullName: "",
+      email: "",
+    };
+
     try {
-      const response1 = await axios.patch(
+      const response = await axios.patch(
         "/expresswave/api/users/update-account",
         editedUser
       );
-      const response2 = await axios.patch(
-        "/expresswave/api/users/update-avatar",
-        values.avatar
-      );
-      const updatedUser = {
-        username: response1?.data?.username,
-        fullName: response1?.data?.fullName,
-        email: response1?.data?.email,
-        avatar: response2?.data?.avatar,
-      };
-      useStore?.addUser?.(updatedUser);
+
+      updatedUser["email"] = response?.data?.data?.email;
+      updatedUser["username"] = response?.data?.data?.username;
+      updatedUser["fullName"] = response?.data?.data?.fullName;
+
+      useStore.updateUser(updatedUser);
+
       toast({
         description: "Profile updated successfully",
         className: "text-green-400",
@@ -72,28 +73,13 @@ function EditProfileForm() {
         <h1 className="ex-text-yellow text-4xl font-lobster text-center">
           Edit your profile
         </h1>
-        <div className="w-2/3 mx-auto">
+        <div className="w-2/3 mx-auto mt-10">
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-              <FormField
-                control={form.control}
-                name="avatar"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Avatar</FormLabel>
-                    <FormControl>
-                      <Input
-                        className="ex-bg-lightgray ex-text-white"
-                        type="file"
-                        placeholder="shadcn"
-                        {...field}
-                      />
-                    </FormControl>
-
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="space-y-8"
+              encType="multipart/form-data"
+            >
               <FormField
                 control={form.control}
                 name="fullName"

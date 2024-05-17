@@ -11,30 +11,23 @@ import { useNavigate } from "react-router-dom";
 
 function AvatarComp() {
   const useStore = useUserStore();
-  const currentUser = useStore.user;
   const navigate = useNavigate();
   const handleProfile = () => {
-    navigate(`/profile/${currentUser.username}`);
+    navigate(`/profile/${useStore?.user?.username}`);
   };
   return (
     <>
       <DropdownMenu>
         <DropdownMenuTrigger className="border-none focus:outline-none">
           <Avatar>
-            <AvatarImage src={currentUser.avatar} />
+            <AvatarImage src={useStore?.user?.avatar} />
             <AvatarFallback>user</AvatarFallback>
           </Avatar>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="ex-bg-gray border-none ex-text-gray">
-          <DropdownMenuItem
-            onClick={handleProfile}
-            className=" hover:text-yellow-200"
-          >
-            Profile
-          </DropdownMenuItem>
-          <DropdownMenuItem>Billing</DropdownMenuItem>
-          <DropdownMenuItem>Team</DropdownMenuItem>
-          <DropdownMenuItem>Subscription</DropdownMenuItem>
+          <DropdownMenuItem onClick={handleProfile}>Profile</DropdownMenuItem>
+          <DropdownMenuItem>Theme</DropdownMenuItem>
+          <DropdownMenuItem>Settings</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </>

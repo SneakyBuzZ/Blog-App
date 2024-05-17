@@ -17,7 +17,7 @@ const EditProfileSchema = z.object({
     .string()
     .min(4, { message: "username must be atleast 4 characters" }),
   email: z.string().email(),
-  avatar: z.string(),
+  avatar: z.string().optional(),
 });
 
 const LoginSchema = z.object({

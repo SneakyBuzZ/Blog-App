@@ -1,4 +1,5 @@
 import useUserStore from "@/lib/store/userStore";
+import EditAvatarForm from "./EditAvatarForm";
 function EditProfileAvatar() {
   const useStore = useUserStore();
   return (
@@ -11,7 +12,9 @@ function EditProfileAvatar() {
             src={`${useStore?.user?.avatar}`}
           />
         </div>
-
+        <div className="px-10">
+          <EditAvatarForm />
+        </div>
         <div className="flex flex-col justify-center items-center">
           <h1 className="ex-text-white text-3xl">{useStore?.user?.fullName}</h1>
           <h3 className="ex-text-yellow">{useStore?.user?.username}</h3>

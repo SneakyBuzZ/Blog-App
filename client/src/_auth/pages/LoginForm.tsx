@@ -39,7 +39,7 @@ function LoginForm() {
         email: response.data.data.user.email,
         avatar: response.data.data.user.avatar,
       };
-      useStore?.addUser?.(loggedInUser);
+      useStore.addUser(loggedInUser);
       navigate("/");
       toast({
         description: "Login was successful",
