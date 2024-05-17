@@ -67,6 +67,7 @@ type Actions = {
   addUser: (user: IUser) => void;
   reset: () => void;
   updateUser: (user: IUser) => void;
+  updateAvatar: (avatar: string) => void;
 };
 
 const initialState: State = {
@@ -106,6 +107,15 @@ const userSlice: StateCreator<userSliceType, [], [], userSliceType> = (
         fullName: user.fullName,
         username: user.username,
         email: user.email,
+      },
+    }));
+  },
+  updateAvatar: (avatar: string) => {
+    set((state) => ({
+      ...state,
+      user: {
+        ...state.user,
+        avatar,
       },
     }));
   },

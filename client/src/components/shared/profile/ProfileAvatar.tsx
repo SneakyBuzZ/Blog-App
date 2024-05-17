@@ -1,3 +1,4 @@
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import useUserStore from "@/lib/store/userStore";
 
 function ProfileAvatar() {
@@ -6,11 +7,13 @@ function ProfileAvatar() {
     <>
       <div className="flex gap-5  p-5 ">
         <div className="flex flex-col items-center ">
-          <img
-            className="w-28 rounded-full object-cover object-center"
-            alt="hero"
-            src={`${useStore?.user?.avatar}`}
-          />
+          <Avatar className="w-[7rem] h-[7rem]">
+            <AvatarImage
+              className="  rounded-full object-cover object-center ex-editprofile-shadow"
+              src={`${useStore?.user?.avatar}`}
+            />
+            <AvatarFallback>CN</AvatarFallback>
+          </Avatar>
         </div>
 
         <div className="flex flex-col justify-center ">

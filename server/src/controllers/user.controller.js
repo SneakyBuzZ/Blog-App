@@ -290,4 +290,17 @@ const updateAvatar = asyncHandler(async (req, res) => {
         )
 })
 
-export { registerUser, loginUser, logoutUser, renewAccessToken, changePassword, getCurrentUser, updateAccountDetails, updateAvatar }
+const changeAvatar = asyncHandler(async (req, res) => {
+    console.log("REQ FILE : ", req.file)
+    return res
+        .status(200)
+        .json(
+            new ApiResponse(
+                200,
+                { message: "hi" },
+                "avatar updated successfully"
+            )
+        )
+})
+
+export { registerUser, loginUser, logoutUser, renewAccessToken, changePassword, getCurrentUser, updateAccountDetails, updateAvatar, changeAvatar }
