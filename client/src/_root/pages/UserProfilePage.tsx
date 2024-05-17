@@ -19,10 +19,12 @@ function UserProfilePage() {
             onClick={() =>
               navigate(`/edit-profile/${useStore?.user?.username}`)
             }
-            className=" bg-transparent hover:underline mt-9"
+            className=" bg-transparent  mt-9"
           >
-            <span>Edit Profile</span>
-            <UserCog className="h-4" />
+            <span className="dark:ex-text-white text-black hover:underline">
+              Edit Profile
+            </span>
+            <UserCog className="h-4" color="gray" />
           </Button>
         </div>
       </section>

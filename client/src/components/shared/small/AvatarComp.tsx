@@ -5,12 +5,13 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+// import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import useUserStore from "@/lib/store/userStore";
 import { useNavigate } from "react-router-dom";
 
 function AvatarComp() {
   const useStore = useUserStore();
+
   const navigate = useNavigate();
   const handleProfile = () => {
     navigate(`/profile/${useStore?.user?.username}`);
@@ -19,12 +20,13 @@ function AvatarComp() {
     <>
       <DropdownMenu>
         <DropdownMenuTrigger className="border-none focus:outline-none">
-          <Avatar>
-            <AvatarImage src={useStore?.user?.avatar} />
-            <AvatarFallback>user</AvatarFallback>
-          </Avatar>
+          <div className="avatar pt-2">
+            <div className="w-8  rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+              <img src={useStore?.user?.avatar} />
+            </div>
+          </div>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="ex-bg-gray border-none ex-text-gray">
+        <DropdownMenuContent className="bg-neutral-800 border-none ex-text-gray">
           <DropdownMenuItem onClick={handleProfile}>Profile</DropdownMenuItem>
           <DropdownMenuItem>Theme</DropdownMenuItem>
           <DropdownMenuItem>Settings</DropdownMenuItem>

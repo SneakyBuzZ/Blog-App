@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Pencil } from "lucide-react";
 import { useState, useRef } from "react";
 import axios from "axios";
 import { useToast } from "@/components/ui/use-toast";
@@ -75,13 +74,17 @@ function EditAvatarForm() {
         <Input
           ref={inputRef}
           name="avatar"
-          className="ex-bg-lightgray ex-text-white"
+          className="bg-neutral-900 ex-text-white"
           id="picture"
           type="file"
           onChange={handleFileChange}
         />
-        <Button type="submit" variant={"yellow"} className="self-end">
-          <Pencil height={15} />
+        <Button
+          type="submit"
+          variant={"default"}
+          className="self-end bg-neutral-800 text-white"
+        >
+          Change
         </Button>
       </form>
     </div>

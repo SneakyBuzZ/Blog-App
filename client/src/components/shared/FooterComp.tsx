@@ -3,82 +3,45 @@ import { NavLink } from "react-router-dom";
 function FooterComp() {
   return (
     <>
-      <footer className="text-gray-600 body-font">
-        <div className="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col w-2/3">
-          <div className="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left md:mt-0 mt-10">
-            <div className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+      <footer className="text-gray-600 body-font bg-transparent ">
+        <div className=" flex px-20 justify-center">
+          <footer className="footer p-10 text-base-content  w-2/3 bg-transparent">
+            <nav>
+              <h6 className="footer-title">Services</h6>
+              <a className="link link-hover">Branding</a>
+              <a className="link link-hover">Design</a>
+              <a className="link link-hover">Marketing</a>
+              <a className="link link-hover">Advertisement</a>
+            </nav>
+            <nav>
+              <h6 className="footer-title">Company</h6>
+              <a className="link link-hover">About us</a>
+              <a className="link link-hover">Contact</a>
+              <a className="link link-hover">Jobs</a>
+              <a className="link link-hover">Press kit</a>
+            </nav>
+            <nav>
+              <h6 className="footer-title">Legal</h6>
+              <a className="link link-hover">Terms of use</a>
+              <a className="link link-hover">Privacy policy</a>
+              <a className="link link-hover">Cookie policy</a>
+            </nav>
+          </footer>
+          <div className="  flex flex-col items-start justify-center bg-transparent">
+            <div className=" flex title-font font-medium items-center md:justify-start justify-center text-gray-900 ">
               <NavLink
                 to="/"
                 className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
               >
                 <img className=" h-14" src="/exwave.png" alt="" />
               </NavLink>
-              <h1 className=" font-lobster text-2xl ex-text-yellow">
+              <h1 className=" font-lobster text-2xl ex-text-yellow bg-transparent">
                 Express Wave
               </h1>
             </div>
-            <p className="mt-2 text-sm ex-text-gray ml-5">
+            <p className="mt-2 text-sm ex-text-gray ml-5 bg-transparent">
               Air plant banjo lyft occupy retro adaptogen indego
             </p>
-          </div>
-          <div className="flex-grow flex flex-wrap md:pr-20 -mb-10 md:text-left text-center order-first">
-            <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-              <h2 className="title-font font-medium ex-text-white tracking-widest text-sm mb-3">
-                CATEGORIES
-              </h2>
-              <nav className="list-none mb-10 ex-text-gray">
-                <li>
-                  <a className=" hover:text-gray-800">First Link</a>
-                </li>
-                <li>
-                  <a className=" hover:text-gray-800">Second Link</a>
-                </li>
-                <li>
-                  <a className=" hover:text-gray-800">Third Link</a>
-                </li>
-                <li>
-                  <a className=" hover:text-gray-800">Fourth Link</a>
-                </li>
-              </nav>
-            </div>
-            <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-              <h2 className="title-font font-medium ex-text-white tracking-widest text-sm mb-3">
-                CATEGORIES
-              </h2>
-              <nav className="list-none mb-10 ex-text-gray">
-                <li>
-                  <a className=" hover:text-gray-800">First Link</a>
-                </li>
-                <li>
-                  <a className=" hover:text-gray-800">Second Link</a>
-                </li>
-                <li>
-                  <a className=" hover:text-gray-800">Third Link</a>
-                </li>
-                <li>
-                  <a className=" hover:text-gray-800">Fourth Link</a>
-                </li>
-              </nav>
-            </div>
-            <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-              <h2 className="title-font font-medium ex-text-white tracking-widest text-sm mb-3">
-                CATEGORIES
-              </h2>
-              <nav className="list-none mb-10 ex-text-gray">
-                <li>
-                  <a className=" hover:text-gray-800">First Link</a>
-                </li>
-                <li>
-                  <a className=" hover:text-gray-800">Second Link</a>
-                </li>
-                <li>
-                  <a className=" hover:text-gray-800">Third Link</a>
-                </li>
-                <li>
-                  <a className=" hover:text-gray-800">Fourth Link</a>
-                </li>
-              </nav>
-            </div>
           </div>
         </div>
         <div className="ex-bg-gray ex-footer-shadow">

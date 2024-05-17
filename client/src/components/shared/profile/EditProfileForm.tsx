@@ -87,7 +87,7 @@ function EditProfileForm() {
                   <FormItem>
                     <FormControl>
                       <Input
-                        className="ex-bg-lightgray ex-text-white"
+                        className="bg-neutral-900 ex-text-white"
                         placeholder="full name"
                         {...field}
                       />
@@ -103,7 +103,7 @@ function EditProfileForm() {
                   <FormItem>
                     <FormControl>
                       <Input
-                        className="ex-bg-lightgray ex-text-white"
+                        className="bg-neutral-900 ex-text-white"
                         placeholder="username"
                         {...field}
                       />
@@ -119,7 +119,7 @@ function EditProfileForm() {
                   <FormItem>
                     <FormControl>
                       <Input
-                        className="ex-bg-lightgray ex-text-white"
+                        className="bg-neutral-900 ex-text-white"
                         placeholder="email"
                         {...field}
                       />
@@ -130,7 +130,7 @@ function EditProfileForm() {
               />
               <Button
                 type="submit"
-                className="ex-bg-darkgray ex-text-yellow hover:bg-neutral-900 w-full"
+                className="bg-neutral-800 text-yellow-400 hover:bg-neutral-900 w-full"
               >
                 Submit
               </Button>

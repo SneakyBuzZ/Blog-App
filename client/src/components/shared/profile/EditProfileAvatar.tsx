@@ -21,7 +21,7 @@ function EditProfileAvatar() {
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
         </div>
-        <div className="px-10">
+        <div className="px-10 ">
           <EditAvatarForm />
         </div>
         <div className="flex flex-col justify-center items-center">

@@ -16,6 +16,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import AvatarComp from "./small/AvatarComp";
+import ThemeToggler from "./small/ThemeToggler";
 
 function HeaderComp() {
   const useStore = useUserStore();
@@ -68,34 +69,38 @@ function HeaderComp() {
             ))}
           </nav>
           {useStore.isUserLoggedIn ? (
-            <AlertDialog>
-              <AlertDialogTrigger className="hover:bg-neutral-800 ex-text-gray py-2 px-4 rounded-md hover:text-gray-200">
-                Logout
-              </AlertDialogTrigger>
-              <AlertDialogContent className="ex-bg-gray border-none">
-                <AlertDialogHeader>
-                  <AlertDialogTitle className="ex-text-yellow">
-                    Are you sure?
-                  </AlertDialogTitle>
-                  <AlertDialogDescription className="ex-text-gray">
-                    Do you want to log out from your account.
-                  </AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                  <AlertDialogCancel className="ex-bg-lightgray border-none ex-text-gray hover:bg-neutral-600 hover:text-gray-200">
-                    Cancel
-                  </AlertDialogCancel>
-                  <AlertDialogAction
-                    onClick={handleLogout}
-                    className="ex-bg-lightgray border-none ex-text-gray hover:bg-neutral-600 hover:text-gray-200"
-                  >
-                    Continue
-                  </AlertDialogAction>
-                </AlertDialogFooter>
-              </AlertDialogContent>
-            </AlertDialog>
+            <>
+              <ThemeToggler />
+              <AlertDialog>
+                <AlertDialogTrigger className="hover:bg-neutral-800 ex-text-gray py-2 px-4 rounded-md hover:text-gray-200">
+                  Logout
+                </AlertDialogTrigger>
+                <AlertDialogContent className="ex-bg-gray border-none">
+                  <AlertDialogHeader>
+                    <AlertDialogTitle className="ex-text-yellow">
+                      Are you sure?
+                    </AlertDialogTitle>
+                    <AlertDialogDescription className="ex-text-gray">
+                      Do you want to log out from your account.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel className="ex-bg-lightgray border-none ex-text-gray hover:bg-neutral-600 hover:text-gray-200">
+                      Cancel
+                    </AlertDialogCancel>
+                    <AlertDialogAction
+                      onClick={handleLogout}
+                      className="ex-bg-lightgray border-none ex-text-gray hover:bg-neutral-600 hover:text-gray-200"
+                    >
+                      Continue
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+            </>
           ) : (
-            <div className="flex gap-5">
+            <div className="flex gap-3">
+              <ThemeToggler />
               <Button
                 onClick={handleLogin}
                 className="ex-bg-gray py-2 w-20 ex-text-white hover:text-white hover:bg-stone-800"

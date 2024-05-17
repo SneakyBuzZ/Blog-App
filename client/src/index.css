@@ -72,8 +72,47 @@
   }
 
   body {
-    @apply min-h-screen bg-black;
+    @apply dark:bg-black bg-white;
   }
+
+
+  .ex-bg-white {
+    @apply bg-white;
+  }
+
+  .ex-text-white {
+    @apply text-[#C1C1C1];
+  }
+
+  .ex-text-yellow {
+    @apply text-[#FFD600];
+  }
+
+  .ex-text-gray {
+    @apply text-[#8A8A8A];
+  }
+
+  .ex-bg-black {
+    @apply bg-[#161616];
+  }
+
+  .ex-bg-gray {
+    @apply bg-[#1D1D1D];
+  }
+
+  .ex-bg-darkgray {
+    @apply bg-[#0D0D0D];
+  }
+
+  .ex-bg-lightgray {
+    @apply bg-[#353535];
+  }
+
+  .ex-bg-yellow {
+    @apply bg-[#FFD600];
+  }
+
+
 }
 
 ::-webkit-scrollbar {
@@ -107,38 +146,6 @@ body {
 
 .font-freeman {
   font-family: "Freeman", sans-serif;
-}
-
-.ex-text-white {
-  color: #C1C1C1;
-}
-
-.ex-text-yellow {
-  color: #FFD600;
-}
-
-.ex-text-gray {
-  color: #8A8A8A;
-}
-
-.ex-bg-black {
-  background-color: #161616;
-}
-
-.ex-bg-gray {
-  background-color: #1D1D1D;
-}
-
-.ex-bg-darkgray {
-  background-color: #0D0D0D;
-}
-
-.ex-bg-lightgray {
-  background-color: #353535;
-}
-
-.ex-bg-yellow {
-  background-color: #FFD600;
 }
 
 .ex-text-shadow-white {

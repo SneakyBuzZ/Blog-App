@@ -12,11 +12,19 @@ import { Toaster } from "@/components/ui/toaster";
 import useUserStore from "./lib/store/userStore";
 import UserProfilePage from "./_root/pages/UserProfilePage";
 import EditProfilePage from "./_root/pages/EditProfilePage";
+import { useEffect } from "react";
+import useThemeStore from "./lib/store/themeStore";
 function App() {
   const useStore = useUserStore();
+  const useTheme = useThemeStore();
+
+  useEffect(() => {
+    document?.querySelector?.("html")?.classList.remove("light", "dark");
+    document?.querySelector("html")?.classList.add(useTheme.theme);
+  }, [useTheme.theme]);
   return (
     <>
-      <main className="flex flex-col h-screen">
+      <main className="flex flex-col justify-center">
         <Routes>
           <Route element={<AuthLayout />}>
             <Route path="/login" element={<LoginForm />} />
