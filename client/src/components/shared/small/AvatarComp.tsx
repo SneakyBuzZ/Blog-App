@@ -9,6 +9,8 @@ import {
 import useUserStore from "@/lib/store/userStore";
 import { useNavigate } from "react-router-dom";
 
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+
 function AvatarComp() {
   const useStore = useUserStore();
 
@@ -20,13 +22,15 @@ function AvatarComp() {
     <>
       <DropdownMenu>
         <DropdownMenuTrigger className="border-none focus:outline-none">
-          <div className="avatar pt-2">
-            <div className="w-8  rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-              <img src={useStore?.user?.avatar} />
-            </div>
-          </div>
+          <Avatar className="w-[3rem] h-[3rem]">
+            <AvatarImage
+              className="  rounded-full object-cover object-center ex-editprofile-shadow"
+              src={`${useStore?.user?.avatar}`}
+            />
+            <AvatarFallback>CN</AvatarFallback>
+          </Avatar>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="bg-neutral-800 border-none ex-text-gray">
+        <DropdownMenuContent className="ex-box border-none">
           <DropdownMenuItem onClick={handleProfile}>Profile</DropdownMenuItem>
           <DropdownMenuItem>Theme</DropdownMenuItem>
           <DropdownMenuItem>Settings</DropdownMenuItem>

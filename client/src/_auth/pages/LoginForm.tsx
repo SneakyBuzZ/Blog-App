@@ -12,13 +12,19 @@ import {
 import { Input } from "@/components/ui/input";
 import { LoginSchema } from "@/lib/validation";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 
 import { useToast } from "@/components/ui/use-toast";
 import useUserStore from "@/lib/store/userStore";
+import { useLoginUserQuery } from "@/lib/react-query/queriesAndMutation";
+import { IUser } from "@/lib/types";
 
 function LoginForm() {
   const navigate = useNavigate();
+  const {
+    mutateAsync: loginUser,
+    isPending: isLoading,
+    error,
+  } = useLoginUserQuery();
   const { toast } = useToast();
   const useStore = useUserStore();
   // 1. Define your form.
@@ -31,27 +37,21 @@ function LoginForm() {
   });
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof LoginSchema>) {
-    try {
-      const response = await axios.post("/expresswave/api/users/login", values);
-      const loggedInUser = {
-        username: response.data.data.user.username,
-        fullName: response.data.data.user.fullName,
-        email: response.data.data.user.email,
-        avatar: response.data.data.user.avatar,
-      };
-      useStore.addUser(loggedInUser);
-      navigate("/");
+    const loggedinUser = await loginUser(values);
+    if (!loggedinUser || error) {
       toast({
-        description: "Login was successful",
-        className: "text-green-400",
-      });
-    } catch (error) {
-      console.error("Error posting data:", error);
-      toast({
-        title: "Failed to login",
+        description: error?.message,
         className: "text-red-400",
       });
+      return;
     }
+
+    toast({
+      description: "Registeration was successful",
+      className: "text-green-400",
+    });
+    useStore.addUser(loggedinUser as IUser);
+    navigate("/");
   }
   return (
     <>
@@ -69,7 +69,7 @@ function LoginForm() {
                 <FormItem>
                   <FormControl>
                     <Input
-                      className="ex-bg-lightgray ex-text-white"
+                      className="bg-neutral-600 text-white"
                       placeholder="email"
                       {...field}
                     />
@@ -86,7 +86,7 @@ function LoginForm() {
                   <FormControl>
                     <Input
                       type="password"
-                      className="ex-bg-lightgray ex-text-white"
+                      className="bg-neutral-600 text-white"
                       placeholder="password"
                       {...field}
                     />
@@ -97,7 +97,13 @@ function LoginForm() {
             />
 
             <Button type="submit" variant="yellow">
-              Submit
+              {isLoading ? (
+                <>
+                  <span className="loading loading-spinner text-warning"></span>
+                </>
+              ) : (
+                "Login"
+              )}
             </Button>
           </form>
         </Form>

@@ -12,13 +12,15 @@ function ProfileAvatar() {
               className="  rounded-full object-cover object-center ex-editprofile-shadow"
               src={`${useStore?.user?.avatar}`}
             />
-            <AvatarFallback>CN</AvatarFallback>
+            <AvatarFallback>{useStore?.user?.username}</AvatarFallback>
           </Avatar>
         </div>
 
         <div className="flex flex-col justify-center ">
-          <h1 className="ex-text-white text-3xl">{useStore?.user?.fullName}</h1>
-          <h3>{useStore?.user?.username}</h3>
+          <h1 className="text-3xl font-freeman text-heading">
+            {useStore?.user?.fullName}
+          </h1>
+          <h3 className="text-content ">{useStore?.user?.username}</h3>
           <h5 className="ex-text-yellow">45 Blogs</h5>
         </div>
       </div>

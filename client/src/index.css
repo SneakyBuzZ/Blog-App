@@ -72,9 +72,49 @@
   }
 
   body {
-    @apply dark:bg-black bg-white;
+    @apply dark:bg-black bg-[#F9F9F9];
   }
 
+  @layer utilities {
+
+    /* ##################### TEXT ########################### */
+    .navItems-active {
+      @apply text-black dark:text-yellow-400 underline;
+    }
+
+    .navItems {
+      @apply text-neutral-500 dark:text-neutral-400;
+    }
+
+    .text-heading {
+      @apply text-neutral-800 dark:text-neutral-100;
+    }
+
+    .text-content {
+      @apply text-neutral-500 dark:text-neutral-400;
+    }
+
+    /* ######################### BUTTON ######################## */
+    .yellow-button {
+      @apply bg-yellow-400 text-black font-semibold hover:text-neutral-700 active:bg-yellow-500;
+    }
+
+    .light-button {
+      @apply bg-neutral-800 text-white hover:text-neutral-300 border-neutral-400;
+    }
+
+    /* ############################ BOX ############################ */
+    .ex-box {
+      @apply dark:bg-neutral-900 bg-neutral-100 border border-neutral-500;
+    }
+
+    /* ############################### INPUT ########################## */
+    .ex-input {
+      @apply dark:bg-neutral-700 dark:text-white bg-neutral-200 text-neutral-700;
+    }
+
+
+  }
 
   .ex-bg-white {
     @apply bg-white;

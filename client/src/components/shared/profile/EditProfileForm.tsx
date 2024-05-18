@@ -13,12 +13,17 @@ import {
 import { Input } from "@/components/ui/input";
 import { EditProfileSchema } from "@/lib/validation";
 import useUserStore from "@/lib/store/userStore";
-import axios from "axios";
 import { useToast } from "@/components/ui/use-toast";
+import { useEditUserDetailsQuery } from "@/lib/react-query/queriesAndMutation";
 
 function EditProfileForm() {
   const useStore = useUserStore();
   const { toast } = useToast();
+  const {
+    mutateAsync: editUserDetails,
+    isPending: isLoading,
+    error,
+  } = useEditUserDetailsQuery();
   // 1. Define your form.
   const form = useForm<z.infer<typeof EditProfileSchema>>({
     resolver: zodResolver(EditProfileSchema),
@@ -43,25 +48,22 @@ function EditProfileForm() {
       email: "",
     };
 
-    try {
-      const response = await axios.patch(
-        "/expresswave/api/users/update-account",
-        editedUser
-      );
+    const editedUserResponse = await editUserDetails(editedUser);
 
-      updatedUser["email"] = response?.data?.data?.email;
-      updatedUser["username"] = response?.data?.data?.username;
-      updatedUser["fullName"] = response?.data?.data?.fullName;
+    updatedUser["email"] = editedUserResponse.email;
+    updatedUser["username"] = editedUserResponse.username;
+    updatedUser["fullName"] = editedUserResponse.fullName;
 
-      useStore.updateUser(updatedUser);
+    useStore.updateUser(updatedUser);
 
+    toast({
+      description: "Profile updated successfully",
+      className: "text-green-400",
+    });
+
+    if (error) {
       toast({
-        description: "Profile updated successfully",
-        className: "text-green-400",
-      });
-    } catch (error) {
-      toast({
-        title: "Failed to update profile",
+        title: `Failed to update profile : ${error}`,
         className: "text-red-400",
       });
       throw new Error("Failed to update user");
@@ -69,8 +71,8 @@ function EditProfileForm() {
   }
   return (
     <>
-      <div className="mx-auto py-5  w-5/12 rounded-md">
-        <h1 className="ex-text-yellow text-4xl font-lobster text-center">
+      <div className="mx-auto flex flex-col items-center justify-center h-[25rem] py-6 w-5/12 rounded-md border border-neutral-400  dark:border-neutral-700 shadow-md">
+        <h1 className="ex-text-yellow text-4xl font-freeman text-center">
           Edit your profile
         </h1>
         <div className="w-2/3 mx-auto mt-10">
@@ -87,7 +89,7 @@ function EditProfileForm() {
                   <FormItem>
                     <FormControl>
                       <Input
-                        className="bg-neutral-900 ex-text-white"
+                        className="ex-input"
                         placeholder="full name"
                         {...field}
                       />
@@ -103,7 +105,7 @@ function EditProfileForm() {
                   <FormItem>
                     <FormControl>
                       <Input
-                        className="bg-neutral-900 ex-text-white"
+                        className="ex-input"
                         placeholder="username"
                         {...field}
                       />
@@ -119,7 +121,7 @@ function EditProfileForm() {
                   <FormItem>
                     <FormControl>
                       <Input
-                        className="bg-neutral-900 ex-text-white"
+                        className="ex-input"
                         placeholder="email"
                         {...field}
                       />
@@ -130,9 +132,15 @@ function EditProfileForm() {
               />
               <Button
                 type="submit"
-                className="bg-neutral-800 text-yellow-400 hover:bg-neutral-900 w-full"
+                className="bg-neutral-600 dark:bg-neutral-800 text-yellow-400  w-full"
               >
-                Submit
+                {isLoading ? (
+                  <>
+                    <span className="loading loading-spinner text-warning"></span>
+                  </>
+                ) : (
+                  "Submit"
+                )}
               </Button>
             </form>
           </Form>

@@ -1,15 +1,21 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState, useRef } from "react";
-import axios from "axios";
 import { useToast } from "@/components/ui/use-toast";
 import useUserStore from "@/lib/store/userStore";
+import { useEditUserAvatarQuery } from "@/lib/react-query/queriesAndMutation";
 
 function EditAvatarForm() {
   const [avatarFile, setAvatarFile] = useState<File | null | string>(null);
   const { toast } = useToast();
   const useStore = useUserStore();
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const {
+    mutateAsync: editUserAvatar,
+    isPending: isLoading,
+    error,
+  } = useEditUserAvatarQuery();
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -19,6 +25,7 @@ function EditAvatarForm() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     if (!avatarFile) {
       toast({
         title: "Please select a file to upload",
@@ -27,36 +34,24 @@ function EditAvatarForm() {
       return;
     }
 
-    console.log("Uploaded file:", avatarFile);
-
     const formData = new FormData();
     formData.append("avatar", avatarFile);
 
-    console.log("FormData:", formData);
+    const editedFile = await editUserAvatar(formData);
+    useStore.updateAvatar(editedFile.avatar);
 
-    try {
-      const response = await axios.patch(
-        "/expresswave/api/users/update-avatar",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      useStore.updateAvatar(response.data.data.avatar);
+    toast({
+      title: "Avatar updated successfully",
+      className: "text-green-400",
+    });
 
-      toast({
-        title: "Avatar updated successfully",
-        className: "text-green-400",
-      });
+    // Clear the input and state after successful upload
+    setAvatarFile(null);
+    if (inputRef.current) {
+      inputRef.current.value = "";
+    }
 
-      // Clear the input and state after successful upload
-      setAvatarFile(null);
-      if (inputRef.current) {
-        inputRef.current.value = "";
-      }
-    } catch (error) {
+    if (error) {
       toast({
         title: "Error uploading avatar",
         className: "text-red-400",
@@ -74,7 +69,7 @@ function EditAvatarForm() {
         <Input
           ref={inputRef}
           name="avatar"
-          className="bg-neutral-900 ex-text-white"
+          className="ex-input"
           id="picture"
           type="file"
           onChange={handleFileChange}
@@ -82,9 +77,15 @@ function EditAvatarForm() {
         <Button
           type="submit"
           variant={"default"}
-          className="self-end bg-neutral-800 text-white"
+          className="self-end bg-neutral-600 dark:bg-neutral-800 text-yellow-400"
         >
-          Change
+          {isLoading ? (
+            <>
+              <span className="loading loading-spinner text-warning"></span>
+            </>
+          ) : (
+            "Change"
+          )}
         </Button>
       </form>
     </div>

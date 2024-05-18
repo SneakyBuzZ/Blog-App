@@ -13,13 +13,18 @@ import {
 import { Input } from "@/components/ui/input";
 import { RegisterSchema } from "@/lib/validation";
 import { useToast } from "@/components/ui/use-toast";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import useUserStore from "@/lib/store/userStore";
 import { IUser } from "@/lib/types";
+import { useRegisterUserQuery } from "@/lib/react-query/queriesAndMutation";
 
 function RegisterForm() {
   const userStore = useUserStore();
+  const {
+    mutateAsync: registerUser,
+    isPending: isLoading,
+    error,
+  } = useRegisterUserQuery();
   const { toast } = useToast();
   const navigate = useNavigate();
   // 1. Define your form.
@@ -35,31 +40,21 @@ function RegisterForm() {
 
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof RegisterSchema>) {
-    try {
-      const response = await axios.post(
-        "/expresswave/api/users/register",
-        values
-      );
-      const user: IUser = {
-        username: response?.data?.data?.username,
-        fullName: response?.data?.data?.fullName,
-        email: response?.data?.data?.email,
-        avatar: response?.data?.data?.avatar,
-      };
-      userStore?.addUser?.(user);
-      navigate("/");
-      navigate("/login");
+    const newUser = await registerUser(values);
+    if (!newUser || error) {
       toast({
-        description: "Registeration was successful",
-        className: "text-green-400",
-      });
-    } catch (error) {
-      console.error("Failed to register: ", error);
-      toast({
-        title: "Failed to register",
+        description: error?.message,
         className: "text-red-400",
       });
+      return;
     }
+
+    toast({
+      description: "Registeration was successful",
+      className: "text-green-400",
+    });
+    userStore.addUser(newUser as IUser);
+    navigate("/login");
   }
   return (
     <>
@@ -78,7 +73,7 @@ function RegisterForm() {
                   <FormItem>
                     <FormControl>
                       <Input
-                        className="ex-bg-lightgray ex-text-white"
+                        className="bg-neutral-600 text-white"
                         placeholder="full name"
                         {...field}
                       />
@@ -94,7 +89,7 @@ function RegisterForm() {
                   <FormItem>
                     <FormControl>
                       <Input
-                        className="ex-bg-lightgray ex-text-white"
+                        className="bg-neutral-600 text-white"
                         placeholder="username"
                         {...field}
                       />
@@ -110,7 +105,7 @@ function RegisterForm() {
                   <FormItem>
                     <FormControl>
                       <Input
-                        className="ex-bg-lightgray ex-text-white"
+                        className="bg-neutral-600 text-white"
                         placeholder="email"
                         {...field}
                       />
@@ -127,7 +122,7 @@ function RegisterForm() {
                     <FormControl>
                       <Input
                         type="password"
-                        className="ex-bg-lightgray ex-text-white"
+                        className="bg-neutral-600 text-white"
                         placeholder="password"
                         {...field}
                       />
@@ -138,7 +133,13 @@ function RegisterForm() {
               />
 
               <Button type="submit" variant="yellow">
-                Submit
+                {isLoading ? (
+                  <>
+                    <span className="loading loading-spinner text-warning"></span>
+                  </>
+                ) : (
+                  "Register"
+                )}
               </Button>
             </form>
           </Form>

@@ -2,7 +2,6 @@ import { NavLink, useNavigate } from "react-router-dom";
 import navItems from "../../lib/constants/navItems";
 import { Button } from "@/components/ui/button";
 import useUserStore from "@/lib/store/userStore";
-import axios from "axios";
 
 import {
   AlertDialog,
@@ -17,10 +16,16 @@ import {
 } from "@/components/ui/alert-dialog";
 import AvatarComp from "./small/AvatarComp";
 import ThemeToggler from "./small/ThemeToggler";
+import { useLogoutUserQuery } from "@/lib/react-query/queriesAndMutation";
 
 function HeaderComp() {
   const useStore = useUserStore();
   const navigate = useNavigate();
+  const {
+    mutateAsync: logoutUser,
+    isPending: isLoading,
+    error,
+  } = useLogoutUserQuery();
 
   const handleLogin = () => {
     navigate("/login");
@@ -31,12 +36,10 @@ function HeaderComp() {
   };
 
   const handleLogout = async () => {
-    try {
-      const response = await axios.post("/expresswave/api/users/logout");
-      if (response) useStore?.reset?.();
-
-      navigate("/");
-    } catch (error) {}
+    useStore?.reset?.();
+    await logoutUser();
+    navigate("/");
+    console.log(error);
   };
 
   return (
@@ -55,11 +58,7 @@ function HeaderComp() {
                 <NavLink
                   to={eachItem.route}
                   className={({ isActive }) =>
-                    `${
-                      isActive
-                        ? " ex-text-yellow "
-                        : " ex-text-white hover:text-gray-400"
-                    }
+                    `${isActive ? " navItems-active " : " navItems"}
                             mr-5 cursor-pointer active:scale-95`
                   }
                 >
@@ -72,44 +71,47 @@ function HeaderComp() {
             <>
               <ThemeToggler />
               <AlertDialog>
-                <AlertDialogTrigger className="hover:bg-neutral-800 ex-text-gray py-2 px-4 rounded-md hover:text-gray-200">
+                <AlertDialogTrigger className="bg-neutral-800  py-2 px-4 rounded-md text-gray-200">
                   Logout
                 </AlertDialogTrigger>
-                <AlertDialogContent className="ex-bg-gray border-none">
+                <AlertDialogContent className="dark:bg-neutral-800 bg-neutral-100 border-none">
                   <AlertDialogHeader>
-                    <AlertDialogTitle className="ex-text-yellow">
+                    <AlertDialogTitle className="text-heading font-freeman dark:ex-text-yellow">
                       Are you sure?
                     </AlertDialogTitle>
-                    <AlertDialogDescription className="ex-text-gray">
+                    <AlertDialogDescription className="text-heading">
                       Do you want to log out from your account.
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>
-                    <AlertDialogCancel className="ex-bg-lightgray border-none ex-text-gray hover:bg-neutral-600 hover:text-gray-200">
+                    <AlertDialogCancel className="bg-neutral-200 hover:bg-neutral-200 text-neutral-700 dark:bg-neutral-900 dark:text-neutral-200">
                       Cancel
                     </AlertDialogCancel>
                     <AlertDialogAction
                       onClick={handleLogout}
-                      className="ex-bg-lightgray border-none ex-text-gray hover:bg-neutral-600 hover:text-gray-200"
+                      className="bg-neutral-700 hover:bg-neutral-700 text-yellow-400"
                     >
-                      Continue
+                      {isLoading ? (
+                        <>
+                          <span className="loading loading-spinner text-warning"></span>
+                        </>
+                      ) : (
+                        "Logout"
+                      )}
                     </AlertDialogAction>
                   </AlertDialogFooter>
                 </AlertDialogContent>
               </AlertDialog>
             </>
           ) : (
-            <div className="flex gap-3">
+            <div className="flex justify-center items-center gap-5">
               <ThemeToggler />
-              <Button
-                onClick={handleLogin}
-                className="ex-bg-gray py-2 w-20 ex-text-white hover:text-white hover:bg-stone-800"
-              >
+              <Button onClick={handleLogin} className=" py-2 w-20 light-button">
                 Login
               </Button>
               <Button
                 onClick={handleRegister}
-                className="ex-bg-yellow py-2 w-20 text-black hover:bg-yellow-400 hover:text-stone-800"
+                className=" py-2 w-20 yellow-button"
               >
                 Register
               </Button>

@@ -1,5 +1,4 @@
 import { StateCreator, create } from "zustand";
-import { devtools, persist } from "zustand/middleware";
 
 type State = {
   theme: string;
@@ -27,12 +26,6 @@ const themeSlice: StateCreator<themeSliceType, [], [], themeSliceType> = (
   },
 });
 
-const useThemeStore = create(
-  devtools(
-    persist(themeSlice, {
-      name: "theme",
-    })
-  )
-);
+const useThemeStore = create(themeSlice);
 
 export default useThemeStore;

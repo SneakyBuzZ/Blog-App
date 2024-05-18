@@ -8,14 +8,14 @@ function ThemeToggler() {
     <>
       <label className="flex cursor-pointer gap-2 ">
         {theme === "light" ? (
-          <Sun color="black" className="theme-controller" />
+          <Sun color="gray" className="theme-controller" />
         ) : (
           <Eclipse color="gray" className="theme-controller" />
         )}
         <input
           type="checkbox"
           value=""
-          className="toggle theme-controller bg-neutral-500 hover:bg-neutral-300"
+          className="toggle theme-controller bg-neutral-500 hover:bg-neutral-500"
           onChange={toggleTheme}
         />
       </label>

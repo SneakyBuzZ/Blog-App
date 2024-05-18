@@ -1,31 +1,22 @@
+import { footerItems } from "@/lib/constants/footerItems";
 import { NavLink } from "react-router-dom";
 
 function FooterComp() {
   return (
     <>
-      <footer className="text-gray-600 body-font bg-transparent ">
+      <footer className="text-gray-600 body-font bg-transparent shadow-xl ">
         <div className=" flex px-20 justify-center">
           <footer className="footer p-10 text-base-content  w-2/3 bg-transparent">
-            <nav>
-              <h6 className="footer-title">Services</h6>
-              <a className="link link-hover">Branding</a>
-              <a className="link link-hover">Design</a>
-              <a className="link link-hover">Marketing</a>
-              <a className="link link-hover">Advertisement</a>
-            </nav>
-            <nav>
-              <h6 className="footer-title">Company</h6>
-              <a className="link link-hover">About us</a>
-              <a className="link link-hover">Contact</a>
-              <a className="link link-hover">Jobs</a>
-              <a className="link link-hover">Press kit</a>
-            </nav>
-            <nav>
-              <h6 className="footer-title">Legal</h6>
-              <a className="link link-hover">Terms of use</a>
-              <a className="link link-hover">Privacy policy</a>
-              <a className="link link-hover">Cookie policy</a>
-            </nav>
+            {footerItems.map((item) => (
+              <nav key={item.title}>
+                <h6 className="text-heading text-lg font-unica font-semibold">
+                  {item.title}
+                </h6>
+                <a className="text-content">{item.item1}</a>
+                <a className="text-content">{item.item2}</a>
+                <a className="text-content">{item.item3}</a>
+              </nav>
+            ))}
           </footer>
           <div className="  flex flex-col items-start justify-center bg-transparent">
             <div className=" flex title-font font-medium items-center md:justify-start justify-center text-gray-900 ">
@@ -44,7 +35,7 @@ function FooterComp() {
             </p>
           </div>
         </div>
-        <div className="ex-bg-gray ex-footer-shadow">
+        <div className=" ex-footer-shadow">
           <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
             <p className="text-gray-500 text-sm text-center sm:text-left">
               © 2020 Tailblocks —
