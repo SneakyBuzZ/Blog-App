@@ -55,9 +55,9 @@ function LoginForm() {
   }
   return (
     <>
-      <div className="lg:w-2/6 md:w-1/2 ex-bg-gray rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
-        <h1 className="ex-text-white text-3xl mb-1 font-freeman pl-1">Login</h1>
-        <h2 className="ex-text-gray text-sm font-medium title-font mb-8 pl-1">
+      <div className="lg:w-2/6 md:w-1/2 ex-box rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
+        <h1 className="text-heading text-3xl mb-1 font-freeman pl-1">Login</h1>
+        <h2 className="text-content text-sm font-medium title-font mb-8 pl-1">
           Welcome back!! Were where were you?
         </h2>
         <Form {...form}>
@@ -69,7 +69,7 @@ function LoginForm() {
                 <FormItem>
                   <FormControl>
                     <Input
-                      className="bg-neutral-600 text-white"
+                      className="ex-input"
                       placeholder="email"
                       {...field}
                     />
@@ -86,7 +86,7 @@ function LoginForm() {
                   <FormControl>
                     <Input
                       type="password"
-                      className="bg-neutral-600 text-white"
+                      className="ex-input"
                       placeholder="password"
                       {...field}
                     />
@@ -107,7 +107,7 @@ function LoginForm() {
             </Button>
           </form>
         </Form>
-        <p className="ex-text-gray text-sm font-medium title-font mb-8 mt-3 pl-1">
+        <p className="text-content text-sm font-medium title-font mb-8 mt-3 pl-1">
           You are agreeing to our Data ,Privacy and Cookie Policy.
         </p>
       </div>

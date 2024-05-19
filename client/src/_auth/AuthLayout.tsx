@@ -4,12 +4,23 @@ import { IoIosArrowBack } from "react-icons/io";
 import { IoChevronForward } from "react-icons/io5";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import useThemeStore from "@/lib/store/themeStore";
 
 function AuthLayout() {
   const location = useLocation();
   const navigate = useNavigate();
   const [content, setContent] = useState<string>();
   const [path, setPath] = useState<string>();
+
+  const [color, setColor] = useState("#DFDFDF");
+  const { theme } = useThemeStore();
+  useEffect(() => {
+    if (theme === "dark") {
+      setColor("#DFDFDF");
+    } else if (theme === "light") {
+      setColor("#212121");
+    }
+  }, [theme]);
 
   useEffect(() => {
     if (location.pathname === "/register") {
@@ -44,12 +55,13 @@ function AuthLayout() {
             </h1>
             <div className="flex">
               <Button
-                variant="ghost"
                 onClick={() => navigate("/")}
-                className="my-1 ml-6"
+                className="my-1 ml-6 bg-transparent  hover:bg-neutral-200 dark:hover:bg-neutral-800 "
               >
-                <IoIosArrowBack className="mr-1" />
-                <span className="text-md">Back</span>
+                <IoIosArrowBack color={color} className="mr-1" />
+                <span className="text-md text-neutral-700 dark:text-white">
+                  Back
+                </span>
               </Button>
               <Button
                 variant="yellow"
@@ -57,7 +69,7 @@ function AuthLayout() {
                 className="my-1 ml-6 w-30"
               >
                 <span className="text-sm mr-1">{content}</span>
-                <IoChevronForward className="mr-1" />
+                <IoChevronForward color="yellow" className="mr-1" />
               </Button>
             </div>
           </div>

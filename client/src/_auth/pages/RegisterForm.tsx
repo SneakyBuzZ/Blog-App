@@ -59,9 +59,9 @@ function RegisterForm() {
   return (
     <>
       <Form {...form}>
-        <div className="lg:w-2/6 md:w-1/2 ex-bg-gray rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
-          <h1 className="ex-text-white text-3xl mb-1 font-freeman">Register</h1>
-          <h2 className="ex-text-gray text-sm font-medium title-font mb-8">
+        <div className="lg:w-2/6 md:w-1/2 ex-box rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
+          <h1 className="text-heading text-3xl mb-1 font-freeman">Register</h1>
+          <h2 className="text-content text-sm font-medium title-font mb-8">
             Unlock the full experience! Register for all features.
           </h2>
           <Form {...form}>
@@ -73,7 +73,7 @@ function RegisterForm() {
                   <FormItem>
                     <FormControl>
                       <Input
-                        className="bg-neutral-600 text-white"
+                        className="ex-input"
                         placeholder="full name"
                         {...field}
                       />
@@ -89,7 +89,7 @@ function RegisterForm() {
                   <FormItem>
                     <FormControl>
                       <Input
-                        className="bg-neutral-600 text-white"
+                        className="ex-input"
                         placeholder="username"
                         {...field}
                       />
@@ -105,7 +105,7 @@ function RegisterForm() {
                   <FormItem>
                     <FormControl>
                       <Input
-                        className="bg-neutral-600 text-white"
+                        className="ex-input"
                         placeholder="email"
                         {...field}
                       />
@@ -122,7 +122,7 @@ function RegisterForm() {
                     <FormControl>
                       <Input
                         type="password"
-                        className="bg-neutral-600 text-white"
+                        className="ex-input"
                         placeholder="password"
                         {...field}
                       />
