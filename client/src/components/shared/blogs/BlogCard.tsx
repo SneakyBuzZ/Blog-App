@@ -1,3 +1,4 @@
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { formatDate } from "@/lib/utils";
 import { useEffect, useState } from "react";
 
@@ -46,14 +47,13 @@ function BlogCard({
               href="#"
               className="relative inline-flex h-12 w-12 items-center justify-center rounded-full text-white"
             >
-              <img
-                src={userAvatar}
-                alt="user name"
-                title="user name"
-                width="48"
-                height="48"
-                className="max-w-full rounded-full object-cover"
-              />
+              <Avatar className="w-[3rem] h-[3rem]">
+                <AvatarImage
+                  className="  rounded-full object-cover object-center ex-editprofile-shadow"
+                  src={userAvatar}
+                />
+                <AvatarFallback>{userFullName}</AvatarFallback>
+              </Avatar>
             </a>
             <div>
               <h3 className="text-md font-freeman text-heading">{title}</h3>

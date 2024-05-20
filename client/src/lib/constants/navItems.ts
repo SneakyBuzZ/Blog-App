@@ -11,10 +11,6 @@ const navItems = [
     route: "/about",
     label: "About",
   },
-  {
-    route: "/features",
-    label: "Features",
-  },
 ];
 
 export default navItems;
