@@ -19,8 +19,10 @@ app.use(cookieParser())
 
 //=============================== ROUTES
 import userRouter from "./routes/user.route.js";
+import postRouter from "./routes/post.route.js";
 
 //=============================== ROUTES DECLARATION
 app.use("/expresswave/api/users", userRouter)
+app.use("/expresswave/api/posts", postRouter)
 
 export { app }

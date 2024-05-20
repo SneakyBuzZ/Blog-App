@@ -14,6 +14,8 @@ import UserProfilePage from "./_root/pages/UserProfilePage";
 import EditProfilePage from "./_root/pages/EditProfilePage";
 import { useEffect } from "react";
 import useThemeStore from "./lib/store/themeStore";
+import MainSection from "./components/shared/blogs/MainSectionPage";
+import CreatePostPage from "./components/shared/blogs/CreatePostPage";
 function App() {
   const useStore = useUserStore();
   const useTheme = useThemeStore();
@@ -34,7 +36,10 @@ function App() {
           <Route element={<RootLayout />}>
             <Route index path="/" element={<HomePage />} />
             <Route path="/about" element={<AboutPage />} />
-            <Route path="/blogs" element={<BlogsPage />} />
+            <Route path="/blogs" element={<BlogsPage />}>
+              <Route index path="/blogs" element={<MainSection />} />
+              <Route path="/blogs/create-post" element={<CreatePostPage />} />
+            </Route>
             <Route
               path={`/profile/${useStore?.user?.username}`}
               element={<UserProfilePage />}

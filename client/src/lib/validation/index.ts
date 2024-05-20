@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const RegisterSchema = z.object({
+export const RegisterSchema = z.object({
   fullName: z.string().min(4, { message: "name must be atleast 4 characters" }),
   username: z
     .string()
@@ -11,7 +11,7 @@ const RegisterSchema = z.object({
     .min(8, { message: "Password must be atleast 8 characters" }),
 });
 
-const EditProfileSchema = z.object({
+export const EditProfileSchema = z.object({
   fullName: z.string().min(4, { message: "name must be atleast 4 characters" }),
   username: z
     .string()
@@ -20,11 +20,16 @@ const EditProfileSchema = z.object({
   avatar: z.string().optional(),
 });
 
-const LoginSchema = z.object({
+export const LoginSchema = z.object({
   email: z.string().email(),
   password: z
     .string()
     .min(8, { message: "Password must be atleast 8 characters" }),
 });
 
-export { RegisterSchema, LoginSchema, EditProfileSchema };
+export const CreatePostSchema = z.object({
+  title: z.string(),
+  location: z.string(),
+  content: z.string(),
+  category: z.string(),
+});

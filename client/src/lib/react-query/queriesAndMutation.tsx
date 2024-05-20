@@ -1,12 +1,21 @@
 import { useMutation } from "@tanstack/react-query";
 import {
+  createPost,
   editUserAvatar,
   editUserDetails,
+  getAllPosts,
+  getUserDetailsById,
   loginUser,
   logoutUser,
   registerUser,
+  uploadPostImageFile,
 } from "../api/api";
-import { EditUserDetailsType, LoginUserType, RegisterUserType } from "../types";
+import {
+  CreatePostType,
+  EditUserDetailsType,
+  LoginUserType,
+  RegisterUserType,
+} from "../types";
 
 // export const useCreateUserAccountMutation = () => {
 //   return useMutation({
@@ -41,5 +50,29 @@ export const useEditUserDetailsQuery = () => {
 export const useEditUserAvatarQuery = () => {
   return useMutation({
     mutationFn: (formData: FormData) => editUserAvatar(formData),
+  });
+};
+
+export const useUploadPostImageFileQuery = () => {
+  return useMutation({
+    mutationFn: (formData: FormData) => uploadPostImageFile(formData),
+  });
+};
+
+export const useCreatePostQuery = () => {
+  return useMutation({
+    mutationFn: (post: CreatePostType) => createPost(post),
+  });
+};
+
+export const useGetAllPostQuery = () => {
+  return useMutation({
+    mutationFn: () => getAllPosts(),
+  });
+};
+
+export const useGetUserDetailsQuery = () => {
+  return useMutation({
+    mutationFn: (userId: string) => getUserDetailsById(userId),
   });
 };

@@ -15,9 +15,11 @@ import { EditProfileSchema } from "@/lib/validation";
 import useUserStore from "@/lib/store/userStore";
 import { useToast } from "@/components/ui/use-toast";
 import { useEditUserDetailsQuery } from "@/lib/react-query/queriesAndMutation";
+import { useNavigate } from "react-router-dom";
 
 function EditProfileForm() {
   const useStore = useUserStore();
+  const navigate = useNavigate();
   const { toast } = useToast();
   const {
     mutateAsync: editUserDetails,
@@ -55,6 +57,8 @@ function EditProfileForm() {
     updatedUser["fullName"] = editedUserResponse.fullName;
 
     useStore.updateUser(updatedUser);
+
+    navigate("/");
 
     toast({
       description: "Profile updated successfully",

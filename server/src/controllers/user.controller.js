@@ -4,6 +4,7 @@ import { User } from "../models/user.model.js"
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import jwt from "jsonwebtoken"
+import mongoose from "mongoose";
 
 const registerUser = asyncHandler(async (req, res) => {
     //=========================== GETTING DETAILS ========================================
@@ -286,6 +287,24 @@ const updateAvatar = asyncHandler(async (req, res) => {
                 200,
                 user,
                 "avatar updated successfully"
+            )
+        )
+})
+
+export const getUserDetailsById = asyncHandler(async (req, res) => {
+    const userId = req.params.userId;
+    const userObjectId = new mongoose.Types.ObjectId(userId);
+    const user = await User.findById(userObjectId).select("-password");
+    console.log("USER: ", user)
+    if (!user) throw new ApiError(400, "User doesnot exists");
+
+    return res
+        .status(200)
+        .json(
+            new ApiResponse(
+                200,
+                user,
+                "User details fetched successfully"
             )
         )
 })

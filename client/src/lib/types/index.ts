@@ -22,3 +22,26 @@ export interface EditUserDetailsType {
   username: string;
   email: string;
 }
+
+export interface CreatePostType {
+  title: string;
+  content: string;
+  location: string;
+  imageFile: string;
+  category: string;
+}
+
+export interface AllPostsType {
+  _id: string;
+  title: string;
+  content: string;
+  imageFile: string;
+  location: string;
+  category: string;
+  slug: string;
+  owner: string;
+  ownerAvatar: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+}

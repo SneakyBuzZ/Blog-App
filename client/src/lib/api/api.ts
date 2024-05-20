@@ -1,5 +1,10 @@
 import axios from "axios";
-import { RegisterUserType, LoginUserType, EditUserDetailsType } from "../types";
+import {
+  RegisterUserType,
+  LoginUserType,
+  EditUserDetailsType,
+  CreatePostType,
+} from "../types";
 import { delay } from "../utils";
 
 export const registerUser = async (userValues: RegisterUserType) => {
@@ -44,4 +49,40 @@ export const editUserAvatar = async (formData: FormData) => {
   );
   await delay(2000);
   return response.data.data;
+};
+
+export const uploadPostImageFile = async (formData: FormData) => {
+  const response = await axios.post(
+    "/expresswave/api/posts/upload-imageFile",
+    formData,
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+  return response.data.data.url;
+};
+
+export const createPost = async (post: CreatePostType) => {
+  const response = await axios.post("/expresswave/api/posts/create-post", post);
+  await delay(2000);
+  return response?.data;
+};
+
+export const getAllPosts = async () => {
+  const response = await axios.get("/expresswave/api/posts/get-posts");
+  await delay(2000);
+  return response?.data?.data?.allPosts;
+};
+
+export const getUserDetailsById = async (userId: string) => {
+  const params = {
+    userId,
+  };
+  const response = await axios.get(`/expresswave/api/users/get-userById`, {
+    params,
+  });
+  await delay(2000);
+  return response?.data?.data;
 };

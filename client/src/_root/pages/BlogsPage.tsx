@@ -1,7 +1,14 @@
+// import SideBar from "@/components/shared/blogs/SideBar";
+import { Outlet } from "react-router-dom";
+
 function BlogsPage() {
   return (
     <>
-      <h1 className="text-white text-2xl">THIS IS BLOGS PAGE</h1>
+      <section className="flex dark:bg-[#121212] justify-center items-start">
+        <div className="w-[85%]  h-full">
+          <Outlet />
+        </div>
+      </section>
     </>
   );
 }
