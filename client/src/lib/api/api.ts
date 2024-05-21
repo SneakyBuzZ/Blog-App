@@ -72,7 +72,7 @@ export const createPost = async (post: CreatePostType) => {
 
 export const getAllPosts = async () => {
   const response = await axios.get("/expresswave/api/posts/get-posts");
-  await delay(2000);
+  await delay(700);
   return response?.data?.data?.allPosts;
 };
 
@@ -84,5 +84,12 @@ export const getUserDetailsById = async (userId: string) => {
     params,
   });
   await delay(2000);
+  return response?.data?.data;
+};
+
+export const getPostBySlug = async (slug: string) => {
+  const response = await axios.get(`/expresswave/api/posts/blogpost/${slug}`);
+
+  await delay(1000);
   return response?.data?.data;
 };

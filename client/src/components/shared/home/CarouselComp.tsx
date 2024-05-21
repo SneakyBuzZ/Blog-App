@@ -1,7 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Glide from "@glidejs/glide";
-import { AllPostsType } from "@/lib/types";
-import { useGetAllPostQuery } from "@/lib/react-query/queriesAndMutation";
 
 export default function CarouselComp() {
   useEffect(() => {
@@ -32,16 +30,6 @@ export default function CarouselComp() {
     };
   }, []);
 
-  const { mutateAsync: getAllPosts } = useGetAllPostQuery();
-
-  const [allPosts, setAllPosts] = useState<AllPostsType[]>([]);
-
-  useEffect(() => {
-    getAllPosts().then((response) => {
-      setAllPosts(response);
-    });
-  }, []);
-
   return (
     <>
       {/*<!-- Component: Carousel with indicators & controls inside --> */}
@@ -55,17 +43,22 @@ export default function CarouselComp() {
                 className="m-auto max-h-full w-full h-60 object-cover"
               />
             </li>
-            {allPosts.map((post) => (
-              <li key={post._id}>
-                <img
-                  src={post.imageFile}
-                  className=" max-h-full w-80 h-60 object-cover"
-                />
-              </li>
-            ))}
+
             <li>
               <img
                 src="https://assets.entrepreneur.com/content/3x2/2000/20191009140007-GettyImages-1053962188.jpeg"
+                className="m-auto max-h-full w-full h-60 object-cover"
+              />
+            </li>
+            <li>
+              <img
+                src="https://www.globalfocusmagazine.com/wp-content/uploads/2020/02/Engaging_with_technology-scaled.jpg"
+                className="m-auto max-h-full w-full h-60 object-cover"
+              />
+            </li>
+            <li>
+              <img
+                src="https://img.lovepik.com/photo/48013/0603.jpg_wh860.jpg"
                 className="m-auto max-h-full w-full h-60 object-cover"
               />
             </li>

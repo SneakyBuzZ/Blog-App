@@ -5,7 +5,7 @@ function ProfileAvatar() {
   const useStore = useUserStore();
   return (
     <>
-      <div className="flex gap-5  p-5 ">
+      <div className="flex flex-col md:flex-row gap-5 border p-5 ">
         <div className="flex flex-col items-center ">
           <Avatar className="w-[7rem] h-[7rem]">
             <AvatarImage

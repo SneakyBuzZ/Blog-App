@@ -35,10 +35,12 @@ function MainSection() {
   return (
     <>
       <section className="flex flex-col items-center h-full">
-        <div className="flex justify-between items-center h-[10%] w-full my-5 px-14">
-          <div className="flex gap-5">
-            <h1 className="text-heading text-3xl font-semibold">Blogs</h1>
-            <div className="flex justify-center items-center gap-1 ">
+        <div className="flex justify-between items-center h-[10%] w-full my-5 md:px-14">
+          <div className="flex items-center gap-5">
+            <h1 className="text-heading text-xl md:text-3xl font-semibold">
+              Blogs
+            </h1>
+            <div className="flex w-60 justify-center items-center gap-1 md:scale-100 scale-75">
               <Input type="text" placeholder="Search" className="ex-input" />
               <Button
                 variant="yellow"
@@ -49,10 +51,10 @@ function MainSection() {
             </div>
           </div>
           <div className="flex gap-1 h-full items-center pr-3">
-            <Button className="bg-neutral-700 h-7 rounded-full text-white">
+            <Button className="bg-neutral-700 h-7 rounded-full text-white hidden md:flex">
               Recent
             </Button>
-            <Button className="bg-neutral-700 h-7 rounded-full text-white">
+            <Button className="bg-neutral-700 h-7 rounded-full text-white hidden md:flex">
               Week
             </Button>
             {isUserLoggedIn && (
@@ -60,7 +62,7 @@ function MainSection() {
                 <Button
                   onClick={() => navigate("/blogs/create-post")}
                   variant="yellow"
-                  className="ml-5"
+                  className="ml-5 md:scale-100 scale-75"
                 >
                   Create
                 </Button>
@@ -68,10 +70,10 @@ function MainSection() {
             )}
           </div>
         </div>
-        <div className=" w-full grid grid-cols-3 gap-5 px-10">
+        <div className=" w-full  grid lg:grid-cols-3 md:grid-cols-2 gap-1 px-5 justify-center place-items-center ">
           {allPosts.map((post) => (
             <li key={post._id}>
-              <div className="h-[30rem] w-96 p-3">
+              <div className="  lg:scale-90 lg:w-96 md:w-80 w-96 md:scale-100 scale-90">
                 <BlogCard
                   title={post.title}
                   content={post.content}
@@ -81,6 +83,7 @@ function MainSection() {
                   postImageUrl={post.imageFile}
                   userFullName={post.owner}
                   userAvatar={post.ownerAvatar}
+                  slug={post.slug}
                 />
               </div>
             </li>

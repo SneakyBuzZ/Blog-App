@@ -69,7 +69,7 @@ function EditAvatarForm() {
         <Input
           ref={inputRef}
           name="avatar"
-          className="ex-input"
+          className="ex-input scale-100 "
           id="picture"
           type="file"
           onChange={handleFileChange}
@@ -77,7 +77,7 @@ function EditAvatarForm() {
         <Button
           type="submit"
           variant={"default"}
-          className="self-end bg-neutral-600 dark:bg-neutral-800 text-yellow-400"
+          className="self-end bg-neutral-600 dark:bg-neutral-800 text-yellow-400 scale-100 "
         >
           {isLoading ? (
             <>

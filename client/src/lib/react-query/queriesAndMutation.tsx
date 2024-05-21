@@ -4,6 +4,7 @@ import {
   editUserAvatar,
   editUserDetails,
   getAllPosts,
+  getPostBySlug,
   getUserDetailsById,
   loginUser,
   logoutUser,
@@ -74,5 +75,11 @@ export const useGetAllPostQuery = () => {
 export const useGetUserDetailsQuery = () => {
   return useMutation({
     mutationFn: (userId: string) => getUserDetailsById(userId),
+  });
+};
+
+export const useGetPostBySlug = () => {
+  return useMutation({
+    mutationFn: (slug: string) => getPostBySlug(slug),
   });
 };

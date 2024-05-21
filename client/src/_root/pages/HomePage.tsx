@@ -16,7 +16,7 @@ function HomePage() {
         <div className="w-5/6 pt-20">
           <CarouselComp />
         </div>
-        <div className="w-7/12">
+        <div className="md:w-7/12 w-full">
           <TestimonyComp />
         </div>
       </div>

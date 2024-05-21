@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 function BlogsPage() {
   return (
     <>
-      <section className="flex dark:bg-[#121212] justify-center items-start">
+      <section className="flex dark:bg-[#0D0D0D] justify-center items-start">
         <div className="w-[85%]  h-full">
           <Outlet />
         </div>

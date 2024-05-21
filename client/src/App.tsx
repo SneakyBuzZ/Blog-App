@@ -16,6 +16,7 @@ import { useEffect } from "react";
 import useThemeStore from "./lib/store/themeStore";
 import MainSection from "./components/shared/blogs/MainSectionPage";
 import CreatePostPage from "./components/shared/blogs/CreatePostPage";
+import ViewMoreBlogPage from "./_root/pages/ViewMoreBlogPage";
 function App() {
   const useStore = useUserStore();
   const useTheme = useThemeStore();
@@ -48,6 +49,7 @@ function App() {
               path={`/edit-profile/${useStore?.user?.username}`}
               element={<EditProfilePage />}
             />
+            <Route path={`/blog/:slug`} element={<ViewMoreBlogPage />} />
           </Route>
 
           <Route path="*" element={<NotFoundPage />} />

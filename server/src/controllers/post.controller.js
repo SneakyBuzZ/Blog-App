@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import { Post } from "../models/post.model.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
@@ -44,31 +45,31 @@ export const uploadPostImageFile = asyncHandler(async (req, res) => {
     )
 })
 
-export const getAllUserPosts = asyncHandler(async (req, res) => {
-    const { pageNo = 1, limit = 10, sortBy = "createdAt", sortType = "desc" } = req.query;
-    const userId = req.user._id;
+// export const getUserPosts = asyncHandler(async (req, res) => {
+//     const { pageNo = 1, limit = 10, sortBy = "createdAt", sortType = "desc" } = req.query;
+//     const userFullName = req.user.fullName;
+//     const sort = {};
+//     sort[sortBy] = sortType.toLowerCase() === "asc" ? 1 : -1;
 
-    const sort = {};
-    sort[sortBy] = sortType.toLowerCase() === "asc" ? 1 : -1;
+//     const filter = {
+//         owner: userFullName
+//     }
 
-    const filter = {}
-    if (userId) filter.user = userId;
+//     const pageNum = parseInt(pageNo, 10)
+//     const limitNum = parseInt(limit, 10)
 
-    const pageNum = parseInt(pageNo, 10)
-    const limitNum = parseInt(limit, 10)
+//     const allUserPosts = await Post.find(filter)
+//         .sort(sort)
+//         .skip((pageNum - 1) * limitNum)
+//         .limit(limit)
 
-    const allUserPosts = await Post.find(filter)
-        .sort(sort)
-        .skip((pageNum - 1) * limitNum)
-        .limit(limit)
+//     if (!allUserPosts) throw new ApiError(200, "Failed to find posts");
 
-    if (!allUserPosts) throw new ApiError(200, "Failed to find posts");
-
-    const totalPosts = allUserPosts.length
-    return res.status(200).json(
-        new ApiResponse(200, { allUserPosts, totalPosts, page: pageNum, limit: limitNum }, "Posts fetched successfully")
-    )
-});
+//     const totalPosts = allUserPosts.length
+//     return res.status(200).json(
+//         new ApiResponse(200, { allUserPosts, totalPosts, page: pageNum, limit: limitNum }, "Posts fetched successfully")
+//     )
+// });
 
 export const getAllPosts = asyncHandler(async (req, res) => {
     const allPosts = await Post.find();
@@ -92,69 +93,85 @@ export const deletePostById = asyncHandler(async (req, res) => {
     )
 })
 
-// export const getPosts = asyncHandler(async (req, res) => {
-//     const { page = 1, limit = 10, sortBy = "createdAt", sortType = "asc" } = req.query
+export const getPostBySlug = asyncHandler(async (req, res) => {
+    const { slug } = req.params;
+    const post = await Post.findOne({ slug });
+    if (!post) throw new ApiError(404, "Post not found");
+    return res.status(200).json(
+        new ApiResponse(200, post, "Post fetched successfully")
+    )
+})
 
-//     const sortKey = sortType === "asc" ? 1 : -1;
-//     const sort = {}
-//     sort[sortBy] = Number(sortKey)
 
-//     const allPosts = await Post.aggregate([
-//         {
-//             $sort: sort
-//         },
-//         {
-//             $lookup: {
-//                 from: "users",
-//                 localField: "owner",
-//                 foreignField: "fullName",
-//                 as: "owner"
-//             }
-//         },
-//         {
-//             $lookup: {
-//                 from: "users",
-//                 localField: "ownerAvatar",
-//                 foreignField: "avatar",
-//                 as: "ownerAvatar"
-//             }
-//         },
-//         {
-//             $project: {
-//                 title: 1,
-//                 content: 1,
-//                 imageFile: 1,
-//                 location: 1,
-//                 category: 1,
-//                 slug: 1,
-//                 owner: 1,
-//                 ownerAvatar: 1,
-//                 createdAt: 1,
-//                 updatedAt: 1
-//             }
-//         }
-//     ])
 
-//     if (!allPosts) throw new ApiError(500, "Aggregation pipeline failed to get all posts")
+export const getUserPosts = asyncHandler(async (req, res) => {
+    const { page = 1, limit = 10, sortBy = "createdAt", sortType = "asc" } = req.query
 
-//     const options = {
-//         page: parseInt(page, 1),
-//         limit: parseInt(limit, 10)
-//     }
+    const sortKey = sortType === "asc" ? 1 : -1;
+    const sort = {}
+    sort[sortBy] = Number(sortKey)
 
-//     const paginatedPosts = await Post.aggregatePaginate(allPosts, options)
+    const allPosts = await Post.aggregate([
+        {
+            $match: {
+                category: "Nature"
+            }
+        },
+        {
+            $sort: sort
+        },
+        {
+            $lookup: {
+                from: "users",
+                localField: "owner",
+                foreignField: "_id",
+                as: "owner"
+            }
+        },
+        {
+            $lookup: {
+                from: "users",
+                localField: "ownerAvatar",
+                foreignField: "avatar",
+                as: "ownerAvatar"
+            }
+        },
+        {
+            $project: {
+                title: 1,
+                content: 1,
+                imageFile: 1,
+                location: 1,
+                category: 1,
+                slug: 1,
+                owner: 1,
+                ownerAvatar: "hahahahaha",
+                createdAt: 1,
+                updatedAt: 1
+            }
+        }
+    ])
 
-//     return res
-//         .status(200)
-//         .json(
-//             new ApiResponse(
-//                 200,
-//                 paginatedPosts.docs,
-//                 "Posts fetched successfully"
-//             )
-//         )
+    if (!allPosts) throw new ApiError(500, "Aggregation pipeline failed to get all posts")
 
-// })
+    const options = {
+        page: parseInt(page, 1),
+        limit: parseInt(limit, 10)
+    }
+
+    const paginatedPosts = await Post.aggregatePaginate(allPosts, options)
+
+    return res
+        .status(200)
+        .json(
+            new ApiResponse(
+                200,
+                paginatedPosts.docs,
+                "Posts fetched successfully"
+            )
+        )
+
+})
 
 // const getOwnerVideos = asyncHandler(async (req, res) => {
 

@@ -1,6 +1,8 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 import { formatDate } from "@/lib/utils";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface BlogCardType {
   title: string;
@@ -10,6 +12,7 @@ interface BlogCardType {
   category: string;
   userAvatar?: string;
   userFullName?: string;
+  slug: string;
   postImageUrl: string;
 }
 
@@ -22,6 +25,7 @@ function BlogCard({
   userAvatar = "https://i.pravatar.cc/48?img=24",
   userFullName,
   postImageUrl = "https://picsum.photos/id/114/800/600",
+  slug,
 }: BlogCardType) {
   if (location && category) null;
   const [date, setDate] = useState<string>("");
@@ -31,9 +35,11 @@ function BlogCard({
     setDate(formatedDate);
   }, []);
 
+  const navigate = useNavigate();
+
   return (
     <>
-      <div className="overflow-hidden h-[28rem] bg-neutral-100 dark:bg-[#0D0D0D] rounded-xl shadow-md">
+      <div className="overflow-hidden h-full bg-neutral-100 dark:bg-[#0D0D0D] rounded-xl shadow-md">
         <figure>
           <img
             src={postImageUrl}
@@ -62,7 +68,18 @@ function BlogCard({
               </p>
             </div>
           </header>
-          <p className="text-content text-sm">{content}</p>
+          <p className="text-content text-sm h-20 overflow-y-hidden">
+            {content}
+          </p>
+          <div className="w-full flex justify-end">
+            <Button
+              onClick={() => navigate(`/blog/${slug}`)}
+              variant={"ghost"}
+              className="mt-5"
+            >
+              Read more
+            </Button>
+          </div>
         </div>
       </div>
     </>

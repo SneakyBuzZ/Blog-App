@@ -75,7 +75,7 @@ function EditProfileForm() {
   }
   return (
     <>
-      <div className="mx-auto flex flex-col items-center justify-center h-[25rem] py-6 w-5/12 rounded-md border border-neutral-400  dark:border-neutral-700 shadow-md">
+      <div className="mx-auto flex flex-col items-center justify-center h-[25rem] py-6 w-10/12  md:w-5/12 rounded-md border border-neutral-400  dark:border-neutral-700 shadow-md">
         <h1 className="ex-text-yellow text-4xl font-freeman text-center">
           Edit your profile
         </h1>

@@ -6,16 +6,22 @@ function ThemeToggler() {
   const { toggleTheme, theme } = useThemeStore();
   return (
     <>
-      <label className="flex cursor-pointer gap-2 ">
+      <label className="flex cursor-pointer">
         {theme === "light" ? (
-          <Sun color="gray" className="theme-controller" />
+          <Sun
+            color="black"
+            className="theme-controller scale-75 md:scale-90"
+          />
         ) : (
-          <Eclipse color="gray" className="theme-controller" />
+          <Eclipse
+            color="white"
+            className="theme-controller scale-75 md:scale-90"
+          />
         )}
         <input
           type="checkbox"
           value=""
-          className="toggle theme-controller bg-neutral-500 hover:bg-neutral-500"
+          className="toggle theme-controller scale-75 md:scale-90 bg-neutral-100 hover:bg-neutral-200"
           onChange={toggleTheme}
         />
       </label>

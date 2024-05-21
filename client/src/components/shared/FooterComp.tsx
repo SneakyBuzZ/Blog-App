@@ -4,22 +4,27 @@ import { NavLink } from "react-router-dom";
 function FooterComp() {
   return (
     <>
-      <footer className="text-gray-600 body-font bg-transparent shadow-xl ">
-        <div className=" flex px-20 justify-center">
-          <footer className="footer p-10 text-base-content  w-2/3 bg-transparent">
+      <footer className="text-gray-600 body-font bg-transparent shadow-xl dark:border-none border-t border-t-neutral-300">
+        <div className="flex md:flex-row px-20 justify-center flex-col">
+          <footer className="flex flex-col md:flex-row p-10 text-base-content w-2/3  mx-auto ">
             {footerItems.map((item) => (
-              <nav key={item.title}>
-                <h6 className="text-heading text-lg font-unica font-semibold">
+              <nav
+                className="flex flex-col w-full gap-2 my-3 "
+                key={item.title}
+              >
+                <h6 className="text-heading text-lg w-full  text-center md:text-start font-unica font-semibold">
                   {item.title}
                 </h6>
-                <a className="text-content">{item.item1}</a>
-                <a className="text-content">{item.item2}</a>
-                <a className="text-content">{item.item3}</a>
+                <a className="w-full text-center md:text-start ">
+                  {item.item1}
+                </a>
+                <a className="w-full text-center md:text-start">{item.item2}</a>
+                <a className="w-full text-center md:text-start">{item.item3}</a>
               </nav>
             ))}
           </footer>
-          <div className="  flex flex-col items-start justify-center bg-transparent">
-            <div className=" flex title-font font-medium items-center md:justify-start justify-center text-gray-900 ">
+          <div className="  flex flex-col items-start justify-center bg-transparent my-4">
+            <div className=" flex mx-auto md:mx-0 title-font font-medium items-center md:justify-start justify-center text-gray-900 ">
               <NavLink
                 to="/"
                 className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
@@ -30,12 +35,12 @@ function FooterComp() {
                 Express Wave
               </h1>
             </div>
-            <p className="mt-2 text-sm ex-text-gray ml-5 bg-transparent">
+            <p className="mt-2 text-sm ex-text-gray text-center md:text-start ml-5 bg-transparent">
               Post your blogs here and let others know what you are doing
             </p>
           </div>
         </div>
-        <div className=" mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
+        <div className=" mx-auto py-4 px-5 flex flex-wrap flex-row gap-2  justify-between items-center">
           <p className="text-amber-300 text-sm text-center sm:text-left">
             @Express Wave
             <a
