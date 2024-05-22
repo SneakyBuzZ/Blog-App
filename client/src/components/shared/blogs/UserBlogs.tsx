@@ -10,7 +10,6 @@ import { AllBlogsType } from "@/lib/types";
 import BlogCard from "./BlogCard";
 import PostSkeleton from "../small/PostSkeleton";
 import { MailWarning } from "lucide-react";
-import useThemeStore from "@/lib/store/themeStore";
 
 function UserBlogs() {
   const navigate = useNavigate();
@@ -34,13 +33,13 @@ function UserBlogs() {
   }, []);
   return (
     <>
-      <section className="pt-5 pb-9 flex flex-col items-center h-full dark:bg-[#0D0D0D] bg-neutral-100 dark:border-none w-full border-t border-t-neutral-300">
+      <section className="mx-auto pt-5 pb-9 flex flex-col items-center h-full dark:bg-[#0D0D0D] bg-neutral-100 dark:border-none w-full lg:w-5/6 border-t border-t-neutral-300">
         <div className="flex justify-center md:justify-between items-center h-[10%] w-full my-5 md:px-14 ">
           <div className="flex items-center md:gap-5">
             <h1 className="hidden md:block text-heading text-md md:text-3xl font-semibold">
               Your Blogs
             </h1>
-            <div className="flex w-60 justify-center items-center gap-1 md:scale-100 scale-75">
+            <div className="flex w-60 justify-center items-center gap-1 scale-100 ">
               <Input type="text" placeholder="Search" className="ex-input" />
               <Button
                 variant="yellow"
@@ -60,7 +59,7 @@ function UserBlogs() {
             {isUserLoggedIn && (
               <>
                 <Button
-                  onClick={() => navigate("/blogs/create-post")}
+                  onClick={() => navigate("/blogs/create-blog")}
                   variant="yellow"
                   className="ml-5 md:scale-100 scale-75 "
                 >
@@ -70,10 +69,10 @@ function UserBlogs() {
             )}
           </div>
         </div>
-        <div className=" w-full  grid lg:grid-cols-3 md:grid-cols-2 gap-1 px-5 justify-center place-items-center ">
+        <div className=" grid md:grid-cols-2 lg:grid-cols-3 gap-5 w-screen px-20">
           {userBlogs.map((post) => (
-            <li key={post.slug}>
-              <div className="  lg:scale-90 lg:w-96 md:w-80 w-96 md:scale-100 scale-90">
+            <li key={post.slug} className="w-full md:p-10">
+              <div className="  h-[30rem]">
                 <BlogCard
                   title={post.title}
                   description={post.description}
@@ -87,9 +86,15 @@ function UserBlogs() {
           ))}
           {isLoading && (
             <>
-              <PostSkeleton />
-              <PostSkeleton />
-              <PostSkeleton />
+              <div className="m-10">
+                <PostSkeleton />
+              </div>
+              <div className="m-10">
+                <PostSkeleton />
+              </div>
+              <div className="m-10">
+                <PostSkeleton />
+              </div>
             </>
           )}
         </div>

@@ -14,7 +14,7 @@ function ProfileAvatar() {
   }, []);
   return (
     <>
-      <div className="flex flex-col  md:flex-row gap-5 p-5 md:my-10">
+      <div className="flex flex-col  md:flex-row gap-5 p-5 w-full">
         <div className="flex flex-col items-center ">
           <Avatar className="w-[7rem] h-[7rem]">
             <AvatarImage
@@ -25,8 +25,8 @@ function ProfileAvatar() {
           </Avatar>
         </div>
 
-        <div className="flex flex-col justify-center ">
-          <h1 className="text-3xl font-freeman text-heading text-center md:text-start">
+        <div className="flex flex-col justify-center w-full">
+          <h1 className="text-3xl w-full font-freeman text-heading text-center md:text-start">
             {useStore?.user?.fullName}
           </h1>
           <h3 className="text-content text-center md:text-start">

@@ -141,19 +141,19 @@ function HeaderComp() {
                   </DropdownMenuTrigger>
                   <DropdownMenuContent className="ex-box border-none">
                     <DropdownMenuItem
-                      className="md:hidden"
+                      className="lg:hidden"
                       onClick={() => navigate("/")}
                     >
                       Home
                     </DropdownMenuItem>
                     <DropdownMenuItem
-                      className="md:hidden"
+                      className="lg:hidden"
                       onClick={() => navigate("/blogs")}
                     >
                       Blogs
                     </DropdownMenuItem>
                     <DropdownMenuItem
-                      className="md:hidden"
+                      className="lg:hidden"
                       onClick={() => navigate("/about")}
                     >
                       About

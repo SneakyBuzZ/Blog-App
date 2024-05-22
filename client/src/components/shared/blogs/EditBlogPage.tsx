@@ -3,25 +3,29 @@ import { Textarea } from "@/components/ui/textarea";
 import useThemeStore from "@/lib/store/themeStore";
 import { ImageDown } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { CreateBlogSchema } from "@/lib/validation";
 
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
+import { EditBlogSchema } from "@/lib/validation";
 import {
-  useCreateBlogQuery,
+  useGetBlogsBySlug,
   useUploadBlogImageFileQuery,
 } from "@/lib/react-query/queriesAndMutation";
-import { useToast } from "@/components/ui/use-toast";
+import { useParams } from "react-router-dom";
 
-function CreatePostPage() {
-  const navigate = useNavigate();
-  const { toast } = useToast();
+export type EditBlogPageType = {
+  title: string;
+  description: string;
+  content: string;
+  image: string;
+};
 
+function EditBlogPage() {
+  const { slug } = useParams();
   const [color, setColor] = useState("#DFDFDF");
   const { theme } = useThemeStore();
 
@@ -32,6 +36,18 @@ function CreatePostPage() {
       setColor("#212121");
     }
   }, [theme]);
+
+  const { mutateAsync: getBlogBySlug } = useGetBlogsBySlug();
+  useEffect(() => {
+    getBlogBySlug(slug ? slug : "").then((response) => {
+      if (response) {
+        form.setValue("title", response.title);
+        form.setValue("description", response.description);
+        form.setValue("content", response.content);
+        setImageFile(response.imageFile);
+      }
+    });
+  }, []);
 
   const { mutateAsync: uploadBlogImageFile, isPending: isLoading } =
     useUploadBlogImageFileQuery();
@@ -46,9 +62,8 @@ function CreatePostPage() {
     }
   }
 
-  // 1. Define your form.
-  const form = useForm<z.infer<typeof CreateBlogSchema>>({
-    resolver: zodResolver(CreateBlogSchema),
+  const form = useForm<z.infer<typeof EditBlogSchema>>({
+    resolver: zodResolver(EditBlogSchema),
     defaultValues: {
       title: "",
       description: "",
@@ -56,32 +71,8 @@ function CreatePostPage() {
     },
   });
 
-  const { mutateAsync: createBlog, isPending: isCreateLoading } =
-    useCreateBlogQuery();
-  // 2. Define a submit handler.
-  async function onSubmit(values: z.infer<typeof CreateBlogSchema>) {
-    const blog = {
-      title: values.title,
-      description: values.description,
-      content: values.content,
-      imageFile,
-    };
-
-    const newBlog = await createBlog(blog);
-
-    if (!newBlog) {
-      toast({
-        description: "Something went wrong",
-        className: "text-red-400",
-      });
-      return;
-    }
-
-    toast({
-      description: "Post created successfully",
-      className: "text-green-400",
-    });
-    navigate("/blogs");
+  async function onSubmit(values: z.infer<typeof EditBlogSchema>) {
+    console.log(values);
   }
   return (
     <>
@@ -89,15 +80,16 @@ function CreatePostPage() {
         <div className="w-full py-5 flex items-center px-6">
           <div className="flex flex-col justify-center items-center w-full">
             <h1 className="text-heading font-freeman text-3xl mx-auto text-center">
-              Create Post
+              Edit Post
             </h1>
             <p className="text-content w-full text-center">
-              Uplaod and let others read your pov and thoughts
+              Would you like to make any edits to your post before submitting?
+              Just remember to save your changes when you're finished.
             </p>
           </div>
           <div className="h-full">
             <Button
-              onClick={() => navigate("/blogs")}
+              // onClick={() => navigate(`/profile/${user?.username}`)}
               className=" self-end w-24"
               variant="yellow"
             >
@@ -116,40 +108,55 @@ function CreatePostPage() {
                 multiple
                 onInput={handleImageInput}
               />
-              {imageFile ? (
+
+              {isLoading ? (
                 <>
-                  <img
-                    alt="gallery"
-                    className="w-full h-full object-cover rounded-lg shadow-md  object-center block"
-                    src={imageFile}
-                  />
+                  <div className="flex h-full ex-input cursor-pointer flex-col justify-center items-center gap-6 rounded-lg px-6 py-10 text-center">
+                    <h1>Image is uploading</h1>
+                    <span className="loading loading-dots loading-md bg-yellow-500 scale-150"></span>
+                  </div>
                 </>
               ) : (
                 <>
-                  <label
-                    htmlFor="image-123"
-                    className="flex h-full ex-input cursor-pointer flex-col justify-center items-center gap-6 rounded-lg px-6 py-10 text-center"
-                  >
-                    <ImageDown color={color} strokeWidth={0.75} size={150} />
-                    <p className="flex flex-col items-center justify-center gap-1 text-sm">
-                      <span className="text-amber-400 hover:text-amber-400">
-                        Upload media
-                        <span className="text-content"> or drag and drop </span>
-                      </span>
-                      <span className="text-heading">
-                        {" "}
-                        PNG, JPG or GIF up to 10MB{" "}
-                      </span>
-                      {isLoading && (
-                        <>
+                  {imageFile ? (
+                    <>
+                      <label htmlFor="image-123">
+                        <img
+                          alt="gallery"
+                          className="w-full h-full object-cover rounded-lg shadow-md  object-center block"
+                          src={imageFile}
+                        />
+                      </label>
+                    </>
+                  ) : (
+                    <label
+                      htmlFor="image-123"
+                      className="flex h-full ex-input cursor-pointer flex-col justify-center items-center gap-6 rounded-lg px-6 py-10 text-center"
+                    >
+                      <ImageDown color={color} strokeWidth={0.75} size={150} />
+                      <p className="flex flex-col items-center justify-center gap-1 text-sm">
+                        <span className="text-amber-400 hover:text-amber-400">
+                          Upload media
                           <span className="text-content">
-                            File is uploading
+                            {" "}
+                            or drag and drop{" "}
                           </span>
-                          <span className="loading loading-dots loading-md bg-yellow-500"></span>
-                        </>
-                      )}
-                    </p>
-                  </label>
+                        </span>
+                        <span className="text-heading">
+                          {" "}
+                          PNG, JPG or GIF up to 10MB{" "}
+                        </span>
+                        {isLoading && (
+                          <>
+                            <span className="text-content">
+                              File is uploading
+                            </span>
+                            <span className="loading loading-dots loading-md bg-yellow-500"></span>
+                          </>
+                        )}
+                      </p>
+                    </label>
+                  )}
                 </>
               )}
             </div>
@@ -209,13 +216,7 @@ function CreatePostPage() {
                 />
 
                 <Button type="submit" className="w-full" variant="yellow">
-                  {isCreateLoading ? (
-                    <>
-                      <span className="loading loading-spinner text-warning"></span>
-                    </>
-                  ) : (
-                    "Create"
-                  )}
+                  "Edit"
                 </Button>
               </form>
             </Form>
@@ -226,4 +227,4 @@ function CreatePostPage() {
   );
 }
 
-export default CreatePostPage;
+export default EditBlogPage;

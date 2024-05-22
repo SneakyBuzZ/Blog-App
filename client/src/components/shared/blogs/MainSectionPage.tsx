@@ -35,12 +35,12 @@ function MainSection() {
   return (
     <>
       <section className="flex flex-col items-center h-full pb-7">
-        <div className="flex justify-between items-center h-[10%] w-full my-5 md:px-14">
-          <div className="flex items-center md:pt-4 gap-5">
-            <h1 className="text-heading text-xl md:text-3xl font-semibold">
-              Blogs
+        <div className="flex justify-center md:justify-between items-center h-[10%] w-full my-5 md:px-14 ">
+          <div className="flex items-center md:gap-5">
+            <h1 className="hidden md:block text-heading text-md md:text-3xl font-semibold">
+              Your Blogs
             </h1>
-            <div className="flex w-60 justify-center items-center gap-1 md:scale-100 scale-75">
+            <div className="flex w-60 justify-center items-center gap-1 scale-75 ">
               <Input type="text" placeholder="Search" className="ex-input" />
               <Button
                 variant="yellow"
@@ -60,9 +60,9 @@ function MainSection() {
             {isUserLoggedIn && (
               <>
                 <Button
-                  onClick={() => navigate("/blogs/create-post")}
+                  onClick={() => navigate("/blogs/create-blog")}
                   variant="yellow"
-                  className="ml-5 md:scale-100 scale-75"
+                  className="ml-5 md:scale-100 scale-75 "
                 >
                   Create
                 </Button>
@@ -70,10 +70,10 @@ function MainSection() {
             )}
           </div>
         </div>
-        <div className=" w-full grid lg:grid-cols-3 md:grid-cols-2 md:px-5 justify-center place-items-center ">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 w-screen px-20">
           {allBlogs.map((post) => (
-            <li key={post.slug}>
-              <div className=" lg:scale-90 lg:w-96 md:w-80 w-96 md:scale-100 scale-90 md:mb-0">
+            <li key={post.slug} className="w-full md:p-10">
+              <div className="h-[30rem]">
                 <BlogCard
                   title={post.title}
                   description={post.description}
@@ -99,5 +99,7 @@ function MainSection() {
     </>
   );
 }
+
+// lg:scale-90 lg:w-96 md:w-80 w-96 md:scale-100 scale-90 md:mb-0
 
 export default MainSection;

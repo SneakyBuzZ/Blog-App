@@ -32,3 +32,9 @@ export const CreateBlogSchema = z.object({
   description: z.string(),
   content: z.string(),
 });
+
+export const EditBlogSchema = z.object({
+  title: z.string(),
+  description: z.string(),
+  content: z.string(),
+});

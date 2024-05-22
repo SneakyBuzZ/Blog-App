@@ -2,6 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 
 import {
   CreateBlogType,
+  EditBlogType,
   EditUserDetailsType,
   LoginUserType,
   RegisterUserType,
@@ -16,6 +17,7 @@ import {
 } from "../api/userApi";
 import {
   createBlog,
+  editBlog,
   getAllBlogs,
   getBlogBySlug,
   getUserBlogs,
@@ -55,6 +57,12 @@ export const useEditUserAvatarQuery = () => {
   });
 };
 
+export const useGetUserDetailsQuery = () => {
+  return useMutation({
+    mutationFn: (userId: string) => getUserDetailsById(userId),
+  });
+};
+
 // ############################# BLOG #############################
 
 export const useUploadBlogImageFileQuery = () => {
@@ -69,15 +77,15 @@ export const useCreateBlogQuery = () => {
   });
 };
 
-export const useGetAllBlogsQuery = () => {
+export const useEditBlogQuery = () => {
   return useMutation({
-    mutationFn: () => getAllBlogs(),
+    mutationFn: (post: EditBlogType) => editBlog(post),
   });
 };
 
-export const useGetUserDetailsQuery = () => {
+export const useGetAllBlogsQuery = () => {
   return useMutation({
-    mutationFn: (userId: string) => getUserDetailsById(userId),
+    mutationFn: () => getAllBlogs(),
   });
 };
 

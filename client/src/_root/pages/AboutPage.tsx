@@ -7,7 +7,7 @@ function AboutPage() {
   const { isUserLoggedIn } = useUserStore();
   const handleClick = () => {
     if (isUserLoggedIn) {
-      navigate("/blogs/create-post");
+      navigate("/blogs/create-blog");
     } else {
       navigate("/register");
     }

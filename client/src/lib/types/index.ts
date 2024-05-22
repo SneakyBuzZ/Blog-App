@@ -32,6 +32,13 @@ export interface CreateBlogType {
   content: string;
   imageFile: string;
 }
+export interface EditBlogType {
+  title: string;
+  description: string;
+  content: string;
+  imageFile: string;
+  _id: string;
+}
 
 export interface AllBlogsType {
   title: string;
@@ -46,6 +53,7 @@ export interface AllBlogsType {
   };
   createdAt: string;
   updatedAt: string;
+  _id: string;
 }
 export interface AllUserBlogsType {
   _id: string;

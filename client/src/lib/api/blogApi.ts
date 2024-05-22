@@ -1,5 +1,5 @@
 import axios from "axios";
-import { CreateBlogType } from "../types";
+import { CreateBlogType, EditBlogType } from "../types";
 import { delay } from "../utils";
 
 export const uploadPostImageFile = async (formData: FormData) => {
@@ -21,6 +21,20 @@ export const createBlog = async (post: CreateBlogType) => {
   return response?.data;
 };
 
+export const editBlog = async (blog: EditBlogType) => {
+  const response = await axios.put(
+    `/expresswave/api/blogs/edit-blog/${blog._id}`,
+    {
+      title: blog.title,
+      description: blog.description,
+      content: blog.content,
+      imageFile: blog.imageFile,
+    }
+  );
+  await delay(2000);
+  return response?.data?.data;
+};
+
 export const getAllBlogs = async () => {
   const response = await axios.get("/expresswave/api/blogs/get-allBlogs");
   await delay(700);
@@ -29,8 +43,6 @@ export const getAllBlogs = async () => {
 
 export const getBlogBySlug = async (slug: string) => {
   const response = await axios.get(`/expresswave/api/blogs/get-bySlug/${slug}`);
-
-  await delay(1000);
   return response?.data?.data;
 };
 

@@ -56,7 +56,7 @@ function BlogCard({
 
   return (
     <>
-      <div className="overflow-hidden scale-75 md:scale-100 h-full bg-neutral-100 dark:bg-neutral-900 rounded-xl shadow-md">
+      <div className="flex flex-col items-center  overflow-hidden scale-100 h-full bg-neutral-100 dark:bg-neutral-900 rounded-xl shadow-md">
         <figure>
           <img
             src={postImageUrl}
@@ -64,8 +64,8 @@ function BlogCard({
             className="aspect-video w-full object-cover "
           />
         </figure>
-        <div className="p-6">
-          <header className="mb-4 flex gap-4">
+        <div className="mb-4 flex flex-col justify-between gap-4 h-full p-3 ">
+          <div className="flex justify-center items-center w-full gap-6">
             {userAvatar && (
               <a
                 href="#"
@@ -82,7 +82,9 @@ function BlogCard({
             )}
 
             <div>
-              <h3 className="text-md font-freeman text-heading">{title}</h3>
+              <h3 className=" text-sm md:text-lg font-freeman text-heading">
+                {title}
+              </h3>
               <p className="text-xs dark:text-amber-300 text-neutral-700">
                 {userFullName ? (
                   <>
@@ -93,22 +95,24 @@ function BlogCard({
                 )}
               </p>
             </div>
-          </header>
-          <p className="text-content text-sm h-20 overflow-y-hidden">
-            {description}
-          </p>
-          <div className="w-full flex justify-between items-center  mt-5">
+          </div>
+
+          <p className="text-content text-sm overflow-hidden">{description}</p>
+          <div className="w-full flex justify-between items-center mt-5 ">
             {!userAvatar && (
               <DropdownMenu>
-                <DropdownMenuTrigger className="border-none focus:outline-none h-full">
+                <DropdownMenuTrigger className="border-none focus:outline-none h-full  ml-3">
                   <Ellipsis color={color} />
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="dark:bg-neutral-700 border-none bg-neutral-200 shadow-md text-heading ">
-                  <DropdownMenuItem className="hover:text-black dark:hover:text-white">
+                <DropdownMenuContent className="dark:bg-black border-none bg-neutral-200 shadow-md text-heading ">
+                  <DropdownMenuItem
+                    onClick={() => navigate(`/edit-blog/${slug}`)}
+                    className="hover:text-black dark:hover:text-white text-content"
+                  >
                     Edit
                   </DropdownMenuItem>
 
-                  <DropdownMenuItem className="hover:text-black dark:hover:text-white">
+                  <DropdownMenuItem className="hover:text-black dark:hover:text-white text-content">
                     Delete
                   </DropdownMenuItem>
                 </DropdownMenuContent>

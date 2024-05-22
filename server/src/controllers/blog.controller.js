@@ -233,7 +233,6 @@ export const getBlogBySlug = asyncHandler(async (req, res) => {
                 "authorDetails.email": 0,
                 "authorDetails.updatedAt": 0,
                 "__v": 0,
-                "_id": 0,
                 "author": 0,
             },
         },
