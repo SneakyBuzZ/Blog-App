@@ -17,6 +17,7 @@ import {
 } from "../api/userApi";
 import {
   createBlog,
+  deleteBlog,
   editBlog,
   getAllBlogs,
   getBlogBySlug,
@@ -80,6 +81,12 @@ export const useCreateBlogQuery = () => {
 export const useEditBlogQuery = () => {
   return useMutation({
     mutationFn: (blog: EditBlogType) => editBlog(blog),
+  });
+};
+
+export const useDeleteBlogQuery = () => {
+  return useMutation({
+    mutationFn: (blogId: string) => deleteBlog(blogId),
   });
 };
 

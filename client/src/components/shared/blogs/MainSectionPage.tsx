@@ -34,7 +34,7 @@ function MainSection() {
 
   return (
     <>
-      <section className="flex flex-col items-center h-full pb-7">
+      <section className="flex flex-col items-center h-full pb-7 overflow-x-clip">
         <div className="flex justify-center md:justify-between items-center h-[10%] w-full my-5 md:px-14 ">
           <div className="flex items-center md:gap-5">
             <h1 className="hidden md:block text-heading text-md md:text-3xl font-semibold">

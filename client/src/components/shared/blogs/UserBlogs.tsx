@@ -33,7 +33,7 @@ function UserBlogs() {
   }, []);
   return (
     <>
-      <section className="mx-auto pt-5 pb-9 flex flex-col items-center h-full dark:bg-[#0D0D0D] bg-neutral-100 dark:border-none w-full lg:w-5/6 border-t border-t-neutral-300">
+      <section className="overflow-x-clip mx-auto pt-5 pb-9 flex flex-col items-center h-full dark:bg-[#0D0D0D] bg-neutral-100 dark:border-none w-full lg:w-5/6 border-t border-t-neutral-300">
         <div className="flex justify-center md:justify-between items-center h-[10%] w-full my-5 md:px-14 ">
           <div className="flex items-center md:gap-5">
             <h1 className="hidden md:block text-heading text-md md:text-3xl font-semibold">
@@ -69,7 +69,7 @@ function UserBlogs() {
             )}
           </div>
         </div>
-        <div className=" grid md:grid-cols-2 lg:grid-cols-3 gap-5 w-screen px-20">
+        <div className=" grid md:grid-cols-2 lg:grid-cols-3 gap-5 w-full  px-15">
           {userBlogs.map((post) => (
             <li key={post.slug} className="w-full md:p-10">
               <div className="h-[25rem]">
@@ -80,6 +80,7 @@ function UserBlogs() {
                   createdAt={post.createdAt}
                   postImageUrl={post.imageFile}
                   slug={post.slug}
+                  _id={post._id}
                 />
               </div>
             </li>

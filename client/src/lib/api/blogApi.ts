@@ -32,7 +32,15 @@ export const editBlog = async (blog: EditBlogType) => {
     }
   );
   await delay(2000);
-  return response?.data?.data;
+  return response;
+};
+
+export const deleteBlog = async (id: string) => {
+  const response = await axios.delete(
+    `/expresswave/api/blogs/delete-blog/${id}`
+  );
+  await delay(1000);
+  return response;
 };
 
 export const getAllBlogs = async () => {

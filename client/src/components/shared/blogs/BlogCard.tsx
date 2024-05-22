@@ -12,6 +12,9 @@ import { Ellipsis } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { useDeleteBlogQuery } from "@/lib/react-query/queriesAndMutation";
+import { useToast } from "@/components/ui/use-toast";
+
 interface BlogCardType {
   title: string;
   description: string;
@@ -21,6 +24,7 @@ interface BlogCardType {
   userFullName?: string;
   slug: string;
   postImageUrl: string;
+  _id?: string;
 }
 
 function BlogCard({
@@ -32,10 +36,12 @@ function BlogCard({
   userFullName,
   postImageUrl,
   slug,
+  _id,
 }: BlogCardType) {
   if (content) null;
 
   const [date, setDate] = useState<string>("");
+  const { toast } = useToast();
 
   useEffect(() => {
     const formatedDate = formatDate(createdAt);
@@ -54,9 +60,28 @@ function BlogCard({
 
   const navigate = useNavigate();
 
+  const { mutateAsync: deleteBlog, isPending: isLoading } =
+    useDeleteBlogQuery();
+
+  const handleDelete = async () => {
+    const response = await deleteBlog(_id ? _id : "");
+    if (!response) {
+      toast({
+        description: "Blog deleted successfully",
+        className: "text-green-400",
+      });
+      navigate("/");
+    }
+    toast({
+      description: "Blog deleted successfully",
+      className: "text-green-400",
+    });
+    location.reload();
+  };
+
   return (
     <>
-      <div className="flex flex-col items-center  overflow-hidden scale-100 h-full bg-neutral-100 dark:bg-neutral-900 rounded-xl shadow-md">
+      <div className=" flex flex-col items-center  overflow-hidden scale-100 h-full bg-neutral-100 dark:bg-neutral-900 rounded-xl shadow-md">
         <figure>
           <img
             src={postImageUrl}
@@ -64,7 +89,7 @@ function BlogCard({
             className="aspect-video w-full object-cover "
           />
         </figure>
-        <div className=" flex flex-col justify-between gap-2 p-3 ">
+        <div className=" flex flex-col justify-between gap-2 p-3 w-full h-full">
           <div className="flex justify-start items-center w-full gap-3 ">
             {userAvatar && (
               <a
@@ -97,28 +122,41 @@ function BlogCard({
             </div>
           </div>
 
-          <p className="text-content text-sm overflow-clip h-9">
+          <p className="text-content text-sm overflow-clip h-9 px-5">
             {description}
           </p>
           <div className="w-full flex justify-between items-center mt-3 ">
             {!userAvatar && (
-              <DropdownMenu>
-                <DropdownMenuTrigger className="border-none focus:outline-none h-full  ml-3">
-                  <Ellipsis color={color} />
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="dark:bg-black border-none bg-neutral-200 shadow-md text-heading ">
-                  <DropdownMenuItem
-                    onClick={() => navigate(`/edit-blog/${slug}`)}
-                    className="hover:text-black dark:hover:text-white text-content"
-                  >
-                    Edit
-                  </DropdownMenuItem>
+              <>
+                {isLoading ? (
+                  <>
+                    <span className="loading loading-spinner text-warning"></span>
+                  </>
+                ) : (
+                  <>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger className="border-none focus:outline-none h-full  ml-3">
+                        <Ellipsis color={color} />
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent className="dark:bg-black border-none bg-neutral-200 shadow-md text-heading ">
+                        <DropdownMenuItem
+                          onClick={() => navigate(`/edit-blog/${slug}`)}
+                          className="hover:text-black dark:hover:text-white text-content"
+                        >
+                          Edit
+                        </DropdownMenuItem>
 
-                  <DropdownMenuItem className="hover:text-black dark:hover:text-white text-content">
-                    Delete
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+                        <DropdownMenuItem
+                          onClick={handleDelete}
+                          className="hover:text-black dark:hover:text-white text-content"
+                        >
+                          Delete
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>{" "}
+                  </>
+                )}
+              </>
             )}
             <Button
               onClick={() => navigate(`/blog/${slug}`)}
