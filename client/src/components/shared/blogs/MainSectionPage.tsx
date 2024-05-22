@@ -40,7 +40,7 @@ function MainSection() {
             <h1 className="hidden md:block text-heading text-md md:text-3xl font-semibold">
               Your Blogs
             </h1>
-            <div className="flex w-60 justify-center items-center gap-1 scale-75 ">
+            <div className="flex w-60 justify-center items-center gap-1 scale-75 md:scale-100">
               <Input type="text" placeholder="Search" className="ex-input" />
               <Button
                 variant="yellow"
@@ -73,7 +73,7 @@ function MainSection() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 w-screen px-20">
           {allBlogs.map((post) => (
             <li key={post.slug} className="w-full md:p-10">
-              <div className="h-[30rem]">
+              <div className="h-[25rem]">
                 <BlogCard
                   title={post.title}
                   description={post.description}
@@ -89,9 +89,11 @@ function MainSection() {
           ))}
           {isLoading && (
             <>
-              <PostSkeleton />
-              <PostSkeleton />
-              <PostSkeleton />
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 w-screen px-20">
+                <PostSkeleton />
+                <PostSkeleton />
+                <PostSkeleton />
+              </div>
             </>
           )}
         </div>

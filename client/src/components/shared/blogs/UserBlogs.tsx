@@ -72,7 +72,7 @@ function UserBlogs() {
         <div className=" grid md:grid-cols-2 lg:grid-cols-3 gap-5 w-screen px-20">
           {userBlogs.map((post) => (
             <li key={post.slug} className="w-full md:p-10">
-              <div className="  h-[30rem]">
+              <div className="h-[25rem]">
                 <BlogCard
                   title={post.title}
                   description={post.description}
@@ -86,13 +86,9 @@ function UserBlogs() {
           ))}
           {isLoading && (
             <>
-              <div className="m-10">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 w-screen px-20">
                 <PostSkeleton />
-              </div>
-              <div className="m-10">
                 <PostSkeleton />
-              </div>
-              <div className="m-10">
                 <PostSkeleton />
               </div>
             </>

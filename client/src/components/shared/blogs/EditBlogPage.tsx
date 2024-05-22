@@ -12,10 +12,14 @@ import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { EditBlogSchema } from "@/lib/validation";
 import {
+  useEditBlogQuery,
   useGetBlogsBySlug,
   useUploadBlogImageFileQuery,
 } from "@/lib/react-query/queriesAndMutation";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { EditBlogType } from "@/lib/types";
+import { useToast } from "@/components/ui/use-toast";
+import useUserStore from "@/lib/store/userStore";
 
 export type EditBlogPageType = {
   title: string;
@@ -28,6 +32,8 @@ function EditBlogPage() {
   const { slug } = useParams();
   const [color, setColor] = useState("#DFDFDF");
   const { theme } = useThemeStore();
+  const { toast } = useToast();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (theme === "dark") {
@@ -37,6 +43,8 @@ function EditBlogPage() {
     }
   }, [theme]);
 
+  const [blogId, setBlogId] = useState<string>("");
+
   const { mutateAsync: getBlogBySlug } = useGetBlogsBySlug();
   useEffect(() => {
     getBlogBySlug(slug ? slug : "").then((response) => {
@@ -45,6 +53,7 @@ function EditBlogPage() {
         form.setValue("description", response.description);
         form.setValue("content", response.content);
         setImageFile(response.imageFile);
+        setBlogId(response._id);
       }
     });
   }, []);
@@ -71,8 +80,36 @@ function EditBlogPage() {
     },
   });
 
+  const { mutateAsync: editBlog, isPending: isEditLoading } =
+    useEditBlogQuery();
+
+  const useStore = useUserStore();
+
   async function onSubmit(values: z.infer<typeof EditBlogSchema>) {
-    console.log(values);
+    const editedBlog: EditBlogType = {
+      title: values.title,
+      description: values.description,
+      content: values.content,
+      imageFile: imageFile,
+      _id: blogId,
+    };
+
+    const editingDone = await editBlog(editedBlog);
+    if (!editingDone) {
+      toast({
+        description: "Something went wrong",
+        className: "text-red-400",
+      });
+
+      navigate("/");
+    }
+
+    navigate(`/profile/${useStore.user.username}`);
+
+    toast({
+      description: "Post edited successfully",
+      className: "text-green-400",
+    });
   }
   return (
     <>
@@ -89,7 +126,7 @@ function EditBlogPage() {
           </div>
           <div className="h-full">
             <Button
-              // onClick={() => navigate(`/profile/${user?.username}`)}
+              onClick={() => navigate(`/profile/${useStore.user?.username}`)}
               className=" self-end w-24"
               variant="yellow"
             >
@@ -216,7 +253,13 @@ function EditBlogPage() {
                 />
 
                 <Button type="submit" className="w-full" variant="yellow">
-                  "Edit"
+                  {isEditLoading ? (
+                    <>
+                      <span className="loading loading-spinner text-warning"></span>
+                    </>
+                  ) : (
+                    "Edit"
+                  )}
                 </Button>
               </form>
             </Form>

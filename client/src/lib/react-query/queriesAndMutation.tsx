@@ -73,13 +73,13 @@ export const useUploadBlogImageFileQuery = () => {
 
 export const useCreateBlogQuery = () => {
   return useMutation({
-    mutationFn: (post: CreateBlogType) => createBlog(post),
+    mutationFn: (blog: CreateBlogType) => createBlog(blog),
   });
 };
 
 export const useEditBlogQuery = () => {
   return useMutation({
-    mutationFn: (post: EditBlogType) => editBlog(post),
+    mutationFn: (blog: EditBlogType) => editBlog(blog),
   });
 };
 

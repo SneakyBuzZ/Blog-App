@@ -64,8 +64,8 @@ function BlogCard({
             className="aspect-video w-full object-cover "
           />
         </figure>
-        <div className="mb-4 flex flex-col justify-between gap-4 h-full p-3 ">
-          <div className="flex justify-center items-center w-full gap-6">
+        <div className=" flex flex-col justify-between gap-2 p-3 ">
+          <div className="flex justify-start items-center w-full gap-3 ">
             {userAvatar && (
               <a
                 href="#"
@@ -97,8 +97,10 @@ function BlogCard({
             </div>
           </div>
 
-          <p className="text-content text-sm overflow-hidden">{description}</p>
-          <div className="w-full flex justify-between items-center mt-5 ">
+          <p className="text-content text-sm overflow-clip h-9">
+            {description}
+          </p>
+          <div className="w-full flex justify-between items-center mt-3 ">
             {!userAvatar && (
               <DropdownMenu>
                 <DropdownMenuTrigger className="border-none focus:outline-none h-full  ml-3">
@@ -120,8 +122,7 @@ function BlogCard({
             )}
             <Button
               onClick={() => navigate(`/blog/${slug}`)}
-              variant={"ghost"}
-              className=""
+              className="bg-transparent text-content hover:text-neutral-100"
             >
               Read more
             </Button>
