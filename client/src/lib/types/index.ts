@@ -1,3 +1,4 @@
+//################# USER #################
 export interface IUser {
   fullName?: string;
   username?: string;
@@ -23,25 +24,37 @@ export interface EditUserDetailsType {
   email: string;
 }
 
-export interface CreatePostType {
+//################# blog #################
+
+export interface CreateBlogType {
   title: string;
+  description: string;
   content: string;
-  location: string;
   imageFile: string;
-  category: string;
 }
 
-export interface AllPostsType {
-  _id: string;
+export interface AllBlogsType {
   title: string;
+  description: string;
   content: string;
   imageFile: string;
-  location: string;
-  category: string;
   slug: string;
-  owner: string;
-  ownerAvatar: string;
+  authorDetails: {
+    username: string;
+    fullName: string;
+    avatar: string;
+  };
   createdAt: string;
   updatedAt: string;
-  __v: number;
+}
+export interface AllUserBlogsType {
+  _id: string;
+  title: string;
+  description: string;
+  content: string;
+  imageFile: string;
+  slug: string;
+  author: string;
+  createdAt: string;
+  updatedAt: string;
 }

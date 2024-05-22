@@ -1,18 +1,18 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useGetPostBySlug } from "@/lib/react-query/queriesAndMutation";
-import { AllPostsType } from "@/lib/types";
+import { useGetBlogsBySlug } from "@/lib/react-query/queriesAndMutation";
+import { AllBlogsType } from "@/lib/types";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 function ViewMoreBlogPage() {
-  const { mutateAsync: getPostBySlug, isPending: isLoading } =
-    useGetPostBySlug();
+  const { mutateAsync: getBlogBySlug, isPending: isLoading } =
+    useGetBlogsBySlug();
   const { slug } = useParams();
-  const [blogPost, setBlogPost] = useState<AllPostsType | null>(null);
+  const [blogPost, setBlogPost] = useState<AllBlogsType | null>(null);
 
   useEffect(() => {
     if (slug) {
-      getPostBySlug(slug).then((post) => {
+      getBlogBySlug(slug).then((post) => {
         setBlogPost(post);
       });
     }
@@ -54,23 +54,28 @@ function ViewMoreBlogPage() {
                 </div>
                 <div className="flex flex-col sm:flex-row mt-10">
                   <div className="sm:w-1/3 text-center sm:pr-8 sm:py-8">
-                    <div className="w-20 h-20 rounded-full inline-flex items-center justify-center">
+                    <div className="w-40 h-40 rounded-full inline-flex items-center justify-center">
                       <Avatar className="h-full w-full scale-90">
                         <AvatarImage
-                          className="  rounded-full object-cover object-center ex-editprofile-shadow"
-                          src={blogPost?.ownerAvatar}
+                          className=" rounded-full object-cover object-center ex-editprofile-shadow"
+                          src={blogPost?.authorDetails?.avatar}
                         />
-                        <AvatarFallback>{blogPost?.owner}</AvatarFallback>
+                        <AvatarFallback>
+                          {blogPost?.authorDetails?.fullName}
+                        </AvatarFallback>
                       </Avatar>
                     </div>
                     <div className="flex flex-col items-center text-center justify-center">
                       <h2 className="font-medium title-font mt-4 text-heading text-lg">
-                        {blogPost?.owner}
+                        {blogPost?.authorDetails?.fullName}
                       </h2>
                       <div className="w-12 h-1 bg-neutral-700 rounded mt-2 mb-4"></div>
                     </div>
                   </div>
                   <div className="sm:w-2/3 sm:pl-8 sm:py-8 md:border-l md:dark:border-l-neutral-700 md:border-l-neutral-400 mt-4 pt-4 sm:mt-0 text-center sm:text-left">
+                    <p className="leading-relaxed text-heading text-lg mb-4">
+                      {blogPost?.description}
+                    </p>
                     <p className="leading-relaxed text-content text-lg mb-4">
                       {blogPost?.content}
                     </p>

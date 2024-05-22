@@ -309,6 +309,18 @@ export const getUserDetailsById = asyncHandler(async (req, res) => {
         )
 })
 
+export const getAllUserCount = asyncHandler(async (req, res) => {
+    const userCount = await User.countDocuments();
+    return res.status(200)
+        .json(
+            new ApiResponse(
+                200,
+                userCount,
+                "User count fetched successfully"
+            )
+        )
+})
+
 
 
 export { registerUser, loginUser, logoutUser, renewAccessToken, changePassword, getCurrentUser, updateAccountDetails, updateAvatar }

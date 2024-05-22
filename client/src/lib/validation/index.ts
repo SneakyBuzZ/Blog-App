@@ -27,9 +27,8 @@ export const LoginSchema = z.object({
     .min(8, { message: "Password must be atleast 8 characters" }),
 });
 
-export const CreatePostSchema = z.object({
+export const CreateBlogSchema = z.object({
   title: z.string(),
-  location: z.string(),
+  description: z.string(),
   content: z.string(),
-  category: z.string(),
 });

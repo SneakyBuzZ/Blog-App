@@ -1,10 +1,5 @@
 import axios from "axios";
-import {
-  RegisterUserType,
-  LoginUserType,
-  EditUserDetailsType,
-  CreatePostType,
-} from "../types";
+import { EditUserDetailsType, LoginUserType, RegisterUserType } from "../types";
 import { delay } from "../utils";
 
 export const registerUser = async (userValues: RegisterUserType) => {
@@ -22,12 +17,6 @@ export const loginUser = async (userValues: LoginUserType) => {
   return response?.data?.data?.user;
 };
 
-export const logoutUser = async () => {
-  await delay(2000);
-  await axios.post("/expresswave/api/users/logout");
-  return;
-};
-
 export const editUserDetails = async (userValues: EditUserDetailsType) => {
   const response = await axios.patch(
     "/expresswave/api/users/update-account",
@@ -35,6 +24,11 @@ export const editUserDetails = async (userValues: EditUserDetailsType) => {
   );
   await delay(2000);
   return response?.data?.data;
+};
+
+export const logoutUser = async () => {
+  await axios.post("/expresswave/api/users/logout");
+  return;
 };
 
 export const editUserAvatar = async (formData: FormData) => {
@@ -51,31 +45,6 @@ export const editUserAvatar = async (formData: FormData) => {
   return response.data.data;
 };
 
-export const uploadPostImageFile = async (formData: FormData) => {
-  const response = await axios.post(
-    "/expresswave/api/posts/upload-imageFile",
-    formData,
-    {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    }
-  );
-  return response.data.data.url;
-};
-
-export const createPost = async (post: CreatePostType) => {
-  const response = await axios.post("/expresswave/api/posts/create-post", post);
-  await delay(2000);
-  return response?.data;
-};
-
-export const getAllPosts = async () => {
-  const response = await axios.get("/expresswave/api/posts/get-posts");
-  await delay(700);
-  return response?.data?.data?.allPosts;
-};
-
 export const getUserDetailsById = async (userId: string) => {
   const params = {
     userId,
@@ -87,9 +56,7 @@ export const getUserDetailsById = async (userId: string) => {
   return response?.data?.data;
 };
 
-export const getPostBySlug = async (slug: string) => {
-  const response = await axios.get(`/expresswave/api/posts/blogpost/${slug}`);
-
-  await delay(1000);
+export const getAllUserCount = async () => {
+  const response = await axios.get(`/expresswave/api/users/get-allUserCount`);
   return response?.data?.data;
 };

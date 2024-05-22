@@ -1,3 +1,5 @@
+import { getAllBlogsCount } from "@/lib/api/blogApi";
+import { getAllUserCount } from "@/lib/api/userApi";
 import useThemeStore from "@/lib/store/themeStore";
 import { Download } from "lucide-react";
 import { Users } from "lucide-react";
@@ -14,6 +16,18 @@ function AnalysisComp() {
       setColor("#212121");
     }
   }, [theme]);
+
+  const [blogCount, setBlogCount] = useState<number>(0);
+  const [userCount, setUserCount] = useState<number>(0);
+
+  useEffect(() => {
+    getAllBlogsCount().then((count) => {
+      setBlogCount(count);
+    });
+    getAllUserCount().then((count) => {
+      setUserCount(count);
+    });
+  }, []);
   return (
     <>
       <div className="w-full px-0  md:px-20 flex flex-col items-center mt-16 lg:flex-row gap-10 justify-center">
@@ -24,7 +38,7 @@ function AnalysisComp() {
           <div className=" flex items-center scale-50 md:scale-100 gap-3 md:gap-6">
             <div className="flex flex-col">
               <div className=" text-black dark:text-white">Downloads</div>
-              <div className="font-freeman text-4xl ex-text-yellow">31K</div>
+              <div className="font-freeman text-4xl ex-text-yellow">0</div>
             </div>
             <div className=" text-secondary ">
               <Download color={`${color}`} />
@@ -34,7 +48,9 @@ function AnalysisComp() {
           <div className=" flex items-center scale-50 md:scale-100 gap-3 md:gap-6">
             <div className="flex flex-col ">
               <div className=" text-black dark:text-white">Users</div>
-              <div className="font-freeman text-4xl ex-text-yellow">4,200</div>
+              <div className="font-freeman text-4xl ex-text-yellow">
+                {userCount}
+              </div>
             </div>
             <div className=" text-secondary ">
               <Users color={`${color}`} />
@@ -43,8 +59,10 @@ function AnalysisComp() {
 
           <div className=" flex items-center scale-50 md:scale-100 gap-3 md:gap-6">
             <div className="flex flex-col">
-              <div className=" text-black dark:text-white">Registers</div>
-              <div className="font-freeman text-4xl ex-text-yellow">1,200</div>
+              <div className=" text-black dark:text-white">Blogs</div>
+              <div className="font-freeman text-4xl ex-text-yellow">
+                {blogCount}
+              </div>
             </div>
             <div className=" text-secondary ">
               <FilePen color={`${color}`} />

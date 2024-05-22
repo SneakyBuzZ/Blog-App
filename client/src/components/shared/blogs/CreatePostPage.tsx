@@ -8,21 +8,23 @@ import { useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { CreatePostSchema } from "@/lib/validation";
+import { CreateBlogSchema } from "@/lib/validation";
 
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import {
-  useCreatePostQuery,
-  useUploadPostImageFileQuery,
+  useCreateBlogQuery,
+  useUploadBlogImageFileQuery,
 } from "@/lib/react-query/queriesAndMutation";
 import { useToast } from "@/components/ui/use-toast";
 
 function CreatePostPage() {
   const navigate = useNavigate();
   const { toast } = useToast();
+
   const [color, setColor] = useState("#DFDFDF");
   const { theme } = useThemeStore();
+
   useEffect(() => {
     if (theme === "dark") {
       setColor("#DFDFDF");
@@ -31,46 +33,43 @@ function CreatePostPage() {
     }
   }, [theme]);
 
-  const { mutateAsync: uploadPostImageFile, isPending: isLoading } =
-    useUploadPostImageFileQuery();
+  const { mutateAsync: uploadBlogImageFile, isPending: isLoading } =
+    useUploadBlogImageFileQuery();
 
   const [imageFile, setImageFile] = useState<string>("");
-
   async function handleImageInput(e: React.ChangeEvent<HTMLInputElement>) {
     if (e.target.files && e.target.files[0]) {
       const formData = new FormData();
       formData.append("imageFile", e.target.files[0]);
-      const imageUrl = await uploadPostImageFile(formData);
+      const imageUrl = await uploadBlogImageFile(formData);
       setImageFile(imageUrl);
     }
   }
 
   // 1. Define your form.
-  const form = useForm<z.infer<typeof CreatePostSchema>>({
-    resolver: zodResolver(CreatePostSchema),
+  const form = useForm<z.infer<typeof CreateBlogSchema>>({
+    resolver: zodResolver(CreateBlogSchema),
     defaultValues: {
       title: "",
+      description: "",
       content: "",
-      location: "",
-      category: "",
     },
   });
 
-  const { mutateAsync: createPost, isPending: isCreateLoading } =
-    useCreatePostQuery();
+  const { mutateAsync: createBlog, isPending: isCreateLoading } =
+    useCreateBlogQuery();
   // 2. Define a submit handler.
-  async function onSubmit(values: z.infer<typeof CreatePostSchema>) {
-    const post = {
+  async function onSubmit(values: z.infer<typeof CreateBlogSchema>) {
+    const blog = {
       title: values.title,
+      description: values.description,
       content: values.content,
       imageFile,
-      location: values.location,
-      category: values.category,
     };
 
-    const newPost = await createPost(post);
+    const newBlog = await createBlog(blog);
 
-    if (!newPost) {
+    if (!newBlog) {
       toast({
         description: "Something went wrong",
         className: "text-red-400",
@@ -180,14 +179,13 @@ function CreatePostPage() {
                 />
                 <FormField
                   control={form.control}
-                  name="location"
+                  name="description"
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
-                        <Input
-                          placeholder="location"
-                          className="ex-input"
-                          type="text"
+                        <Textarea
+                          placeholder="describe your blog briefly..."
+                          className="ex-input placeholder:text-neutral-400 min-h-[30px]"
                           {...field}
                         />
                       </FormControl>
@@ -202,29 +200,14 @@ function CreatePostPage() {
                       <FormControl>
                         <Textarea
                           placeholder="write something about your blog..."
-                          className="ex-input placeholder:text-neutral-400"
+                          className="ex-input placeholder:text-neutral-400 min-h-[150px]"
                           {...field}
                         />
                       </FormControl>
                     </FormItem>
                   )}
                 />
-                <FormField
-                  control={form.control}
-                  name="category"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormControl>
-                        <Input
-                          placeholder="Technology , Travel , Food ..."
-                          className="ex-input"
-                          type="text"
-                          {...field}
-                        />
-                      </FormControl>
-                    </FormItem>
-                  )}
-                />
+
                 <Button type="submit" className="w-full" variant="yellow">
                   {isCreateLoading ? (
                     <>

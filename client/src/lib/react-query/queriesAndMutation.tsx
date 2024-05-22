@@ -1,28 +1,29 @@
 import { useMutation } from "@tanstack/react-query";
+
 import {
-  createPost,
-  editUserAvatar,
-  editUserDetails,
-  getAllPosts,
-  getPostBySlug,
-  getUserDetailsById,
-  loginUser,
-  logoutUser,
-  registerUser,
-  uploadPostImageFile,
-} from "../api/api";
-import {
-  CreatePostType,
+  CreateBlogType,
   EditUserDetailsType,
   LoginUserType,
   RegisterUserType,
 } from "../types";
+import {
+  editUserAvatar,
+  editUserDetails,
+  getUserDetailsById,
+  loginUser,
+  logoutUser,
+  registerUser,
+} from "../api/userApi";
+import {
+  createBlog,
+  getAllBlogs,
+  getBlogBySlug,
+  getUserBlogs,
+  uploadPostImageFile,
+} from "../api/blogApi";
 
-// export const useCreateUserAccountMutation = () => {
-//   return useMutation({
-//     mutationFn: (user: INewUser) => createUserAccount(user),
-//   });
-// };
+// ############################# USER #############################
+
 export const useRegisterUserQuery = () => {
   return useMutation({
     mutationFn: (userValues: RegisterUserType) => registerUser(userValues),
@@ -54,21 +55,23 @@ export const useEditUserAvatarQuery = () => {
   });
 };
 
-export const useUploadPostImageFileQuery = () => {
+// ############################# BLOG #############################
+
+export const useUploadBlogImageFileQuery = () => {
   return useMutation({
     mutationFn: (formData: FormData) => uploadPostImageFile(formData),
   });
 };
 
-export const useCreatePostQuery = () => {
+export const useCreateBlogQuery = () => {
   return useMutation({
-    mutationFn: (post: CreatePostType) => createPost(post),
+    mutationFn: (post: CreateBlogType) => createBlog(post),
   });
 };
 
-export const useGetAllPostQuery = () => {
+export const useGetAllBlogsQuery = () => {
   return useMutation({
-    mutationFn: () => getAllPosts(),
+    mutationFn: () => getAllBlogs(),
   });
 };
 
@@ -78,8 +81,14 @@ export const useGetUserDetailsQuery = () => {
   });
 };
 
-export const useGetPostBySlug = () => {
+export const useGetBlogsBySlug = () => {
   return useMutation({
-    mutationFn: (slug: string) => getPostBySlug(slug),
+    mutationFn: (slug: string) => getBlogBySlug(slug),
+  });
+};
+
+export const useGetUserBlogs = () => {
+  return useMutation({
+    mutationFn: () => getUserBlogs(),
   });
 };

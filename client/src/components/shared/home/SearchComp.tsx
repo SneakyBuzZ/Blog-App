@@ -17,7 +17,7 @@ function SearchComp() {
   return (
     <>
       <div
-        className="w-full h-[13rem] md:h-[20rem] bg-cover bg-no-repeat bg-center flex flex-col justify-center ex-text-white md:gap-10 "
+        className="w-full h-[13rem] mb-14 md:h-[20rem] bg-cover bg-no-repeat bg-center flex flex-col justify-center ex-text-white md:gap-10 "
         style={{ backgroundImage: `url(${bg})` }}
       >
         <h1 className="w-full text-3xl md:text-7xl text-center font-lobster font-semibold bg-transparent text-heading">

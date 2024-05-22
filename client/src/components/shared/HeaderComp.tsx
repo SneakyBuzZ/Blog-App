@@ -27,9 +27,11 @@ import {
 import { Menu } from "lucide-react";
 import useThemeStore from "@/lib/store/themeStore";
 import { useEffect, useState } from "react";
+import { useToast } from "../ui/use-toast";
 
 function HeaderComp() {
   const { theme } = useThemeStore();
+  const { toast } = useToast();
   const [color, setColor] = useState<string>("#ffffff");
   useEffect(() => {
     if (theme === "light") {
@@ -59,6 +61,10 @@ function HeaderComp() {
     useStore?.reset?.();
     await logoutUser();
     navigate("/");
+    toast({
+      description: "Logged out successfully",
+      className: "text-green-400",
+    });
     console.log(error);
   };
 
